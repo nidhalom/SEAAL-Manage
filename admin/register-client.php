@@ -5,16 +5,14 @@
     {
     $regno=$_POST['regno'];
     $fname=$_POST['fname'];
-    $mname=$_POST['mname'];
     $lname=$_POST['lname'];
-    $gender=$_POST['gender'];
     $contactno=$_POST['contact'];
     $emailid=$_POST['email'];
     $password=$_POST['password'];
     $password = md5($password);
-    $query="INSERT into userRegistration(regNo,firstName,middleName,lastName,gender,contactNo,email,password) values(?,?,?,?,?,?,?,?)";
+    $query="INSERT into userRegistration(regNo,firstName,lastName,contactNo,email,password) values(?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($query);
-    $rc=$stmt->bind_param('sssssiss',$regno,$fname,$mname,$lname,$gender,$contactno,$emailid,$password);
+    $rc=$stmt->bind_param('sssiss',$regno,$fname,$lname,$contactno,$emailid,$password);
     $stmt->execute();
         echo"<script>alert('le client a été enregistré!');</script>";
     }
@@ -149,18 +147,6 @@
                             </div>
                         </div>
 
-<!-- 
-                        <div class="col-sm-12 col-md-6 col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Middle Name</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="mname" id="mname" placeholder="Enter Middle Name" required class="form-control">
-                                        </div>
-                                </div>
-                            </div>
-                        </div> -->
-
 
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
@@ -177,24 +163,7 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Gender</h4>
-                                        <div class="form-group mb-4">
-                                            <select class="custom-select mr-sm-2" id="gender" name="gender" required="required">
-                                                <option selected>Choisir...</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <!-- <option value="Others">Others</option> -->
-                                            </select>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-12 col-md-6 col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Contact Number</h4>
+                                    <h4 class="card-title">Numéro de téléphone</h4>
                                         <div class="form-group">
                                             <input type="number" name="contact" id="contact" placeholder="Your Contact" required="required" class="form-control">
                                         </div>

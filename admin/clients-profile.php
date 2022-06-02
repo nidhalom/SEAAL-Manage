@@ -109,7 +109,7 @@
 
                                       <?php	
                                       
-                                      $id=$_GET['id'];
+                                      $id=$_GET['id'];  
                                         $ret="SELECT * from registration where id=?";
                                         $stmt= $mysqli->prepare($ret) ;
                                     $stmt->bind_param('i',$id);
@@ -134,16 +134,16 @@
                                           <td><b>Email Address:</b></td>
                                           <td><?php echo $row->emailid;?></td>
                                           </tr>
-
+<!-- 
 
                                           <tr>
-                                          <td><b>Contact Number :</b></td>
+                                          <td><b>Numéro de téléphone :</b></td>
                                           <td><?php echo $row->contactno;?></td>
                                           <td><b>Gender :</b></td>
                                           <td><?php echo $row->gender;?></td>
                                           <td><b>Selected Course :</b></td>
                                           <td><?php echo $row->course;?></td>
-                                          </tr>
+                                          </tr> -->
 
 
                                           <tr>
@@ -185,14 +185,12 @@
                                           <td><b>Date de début :</b></td>
                                           <td><?php echo $row->stayfrom;?></td>
 
+                                          
+                                          
+                                                                                    <td><b>Places :</b></td>
+                                                                                    <td>  <?php echo $row->seater;?>  </td>
+                                        </tr> 
                                         
-
-
-                                          </tr> 
-
-                                          <td><b>Places :</b></td>
-                                          <td>  <?php echo $row->seater;?>  </td>
-
                                            <tr>
 
                                           <td><b>Duration:</b></td>

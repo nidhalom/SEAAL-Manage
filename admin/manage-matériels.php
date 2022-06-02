@@ -4,9 +4,10 @@
     include('../includes/check-login.php');
     check_login();
 
-    if(isset($_GET['del'])) {
+    if(isset($_GET['del']))
+    {
         $id=intval($_GET['del']);
-        $adn="DELETE from userregistration where id=?";
+        $adn="DELETE from courses where id=?";
             $stmt= $mysqli->prepare($adn);
             $stmt->bind_param('i',$id);
             $stmt->execute();
@@ -35,16 +36,6 @@
      <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-
-    <script language="javascript" type="text/javascript">
-    var popUpWin=0;
-    function popUpWindow(URLStr, left, top, width, height){
-        if(popUpWin) {
-         if(!popUpWin.closed) popUpWin.close();
-            }
-            popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width='+510+',height='+430+',left='+left+', top='+top+',screenX='+left+',screenY='+top+'');
-        }
-    </script>
 
 </head>
 
@@ -95,15 +86,17 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Les Comptes des Clients</h4>
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des matériaux</h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
+                            
                         </div>
                     </div>
                     
                 </div>
+
             </div>
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
@@ -118,45 +111,46 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="card-subtitle">Afficher le compte de tous les clients enregistrés.</h6>
+                                <div class="col-4 m-auto"><a href="add-matérieux.php" ><button type="button" class="btn btn-block btn-md btn-success">Nouveau Matériel</button></a>
+                            </div>
+                            <hr>
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-hover table-bordered no-wrap">
-                                        <thead class="thead-dark">
+                                    <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
-                                                <th>Insc. No.</th>
-                                                <th>Nom de client</th>
-                                                <th>Contact</th>
-                                                <th>Email</th>
-                                                <th></th>
+                                                <th>Nom de Produit</th>
+                                                <th>Entrée</th>
+                                                <th>Sortie</th>
+                                                <th>Stocks</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php	
-                                        $aid=$_SESSION['id'];
-                                        $ret="SELECT * from userregistration";
-                                        $stmt= $mysqli->prepare($ret) ;
-                                        $stmt->execute() ;//ok
-                                        $res=$stmt->get_result();
-                                        $cnt=1;
-                                        while($row=$res->fetch_object())
-                                            {
-                                                ?>
+                                            $aid=$_SESSION['id'];
+                                            $ret="SELECT * from courses";
+                                            $stmt= $mysqli->prepare($ret) ;
+                                            $stmt->execute() ;
+                                            $res=$stmt->get_result();
+                                            $cnt=1;
+                                            while($row=$res->fetch_object())
+                                                {
+                                                    ?>
                                         <tr><td><?php echo $cnt;;?></td>
-                                        <td><?php echo $row->regNo;?></td>
-                                        <td><?php echo $row->firstName;?> <?php echo $row->middleName;?> <?php echo $row->lastName;?></td>
-                                        <!-- <td><?php echo $row->gender;?></td> -->
-                                        <td><?php echo $row->contactNo;?></td>
-                                        <td><?php echo $row->email;?></td>
-                                        <td>
-                                        <a href="view-clients-acc.php?del=<?php echo $row->id;?>" title="Supprimer l'enregistrement" onclick="return confirm('Do you want to delete');"><i class="icon-close" style="color:red;"></i></a></td>
-                                        </tr>
+                                        <td><?php echo $row->course_fn;?></td>
+                                        <td><?php echo $row->course_sn;?></td>
+                                        <td><?php echo $row->course_code;?></td>
+                                        <td><?php echo $row->posting_date;?></td>
+
+                                        <td><a href="edit-courses.php?id=<?php echo $row->id;?>" title="Modifier"><i class="icon-note"></i></a>&nbsp;&nbsp;
+                                        <a href="manage-courses.php?del=<?php echo $row->id;?>" title="Supprimer" onclick="return confirm('Do you want to delete');" ><i class="icon-close" style="color:red;"></i></a></td>
+
+                                    </tr>
                                             <?php
-                                        $cnt=$cnt+1;
+                                                $cnt=$cnt+1;
                                             } ?>
-											
-										
-									</tbody>
+									    </tbody>
                                     </table>
                                 </div>
                             </div>

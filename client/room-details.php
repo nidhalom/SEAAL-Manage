@@ -117,7 +117,7 @@
                                             <td><b>Date de début :</b></td>
                                             <td><?php echo $row->stayfrom;?></td>
 
-                                            <td><b>Seater :</b></td>
+                                            <td><b>Places :</b></td>
                                             <td><?php echo $row->seater;?></td>
                                             <!-- By Hibo -->
 

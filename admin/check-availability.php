@@ -46,8 +46,8 @@
     $stmt->fetch();
     $stmt->close();
     if($count>0)
-    echo "<span style='color:red'>$count. Places déjà complets.</span>";
+    echo "<span style='color:red'>$count. Salle déjà Réserver.</span>";
     else
-        echo "<span style='color:red'>Tous les Places sont disponibles</span>";
+        echo "<span style='color:red'>Salle disponible</span>";
     }
 ?>

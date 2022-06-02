@@ -136,7 +136,7 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Registration Number</h4>
+                                    <h4 class="card-title">Numéro d'immatriculation</h4>
                                         <div class="form-group">
                                             <input type="text" class="form-control" value="<?php echo $row->regNo;?>" required readonly>
                                         </div>
@@ -156,7 +156,7 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">First Name</h4>
+                                    <h4 class="card-title">Nom</h4>
                                         <div class="form-group">
                                             <input type="text" name="fname" id="fname" class="form-control" value="<?php echo $row->firstName;?>"   required="required">
                                         </div>
@@ -166,23 +166,10 @@
                         </div>
 
 
-                        <!-- <div class="col-sm-12 col-md-6 col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Middle Name</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="mname" id="mname" class="form-control" value="<?php echo $row->middleName;?>">
-                                        </div>
-                                    
-                                </div>
-                            </div>
-                        </div> -->
-
-
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Last Name</h4>
+                                    <h4 class="card-title">Prénom</h4>
                                         <div class="form-group">
                                             <input type="text" name="lname" id="lname" class="form-control" value="<?php echo $row->lastName;?>" required="required">
                                         </div>
@@ -225,7 +212,7 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Contact Number</h4>
+                                    <h4 class="card-title">Numéro de téléphone</h4>
                                         <div class="form-group">
                                             <input type="text" name="contact" id="contact" maxlength="10" class="form-control" value="<?php echo $row->contactNo;?>" required="required">
                                         </div>

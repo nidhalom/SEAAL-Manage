@@ -2,7 +2,7 @@
     include('../includes/pdoconfig.php');
     if(!empty($_POST["roomid"])) {	
     $id=$_POST['roomid'];
-    $stmt = $DB_con->prepare("SELECT * FROM rooms WHERE room_no = :id");
+    $stmt = $DB_con->prepare("SELECT * FROM userregistration WHERE room_no = :id");
     $stmt->execute(array(':id' => $id));
     ?>
     <?php

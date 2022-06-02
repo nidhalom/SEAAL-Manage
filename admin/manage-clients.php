@@ -153,7 +153,7 @@
                                         <td><?php echo $row->contactno;?></td>
                                         <td>
                                         <a href="clients-profile.php?id=<?php echo $row->id;?>" title="Afficher tous les détails"><i class="icon-size-fullscreen"></i></a>&nbsp;&nbsp;
-                                        <a href="manage-clients.php?del=<?php echo $row->id;?>" title="Supprimer l'enregistrement" onclick=" return confirm("Do you want to delete");" ><i class="icon-close" style="color:red;"></i></a></td>
+                                        <a href="manage-clients.php?del=<?php echo $row->id;?>" title="Supprimer l'enregistrement" onclick=" return confirm('Do you want to delete');" ><i class="icon-close" style="color:red;"></i></a></td>
                                         </tr>
                                             <?php
                                         $cnt=$cnt+1;

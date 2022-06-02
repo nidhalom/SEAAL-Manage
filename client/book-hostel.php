@@ -79,6 +79,7 @@
         });
     }
     </script> 
+ 
     <!-- By Hibo -->
 </head>
 
@@ -260,14 +261,14 @@
                         <div class="card-body">
                                 <h4 class="card-title">Food Status</h4>
                                 <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio1" value="1" name="foodstatus"
+                                    class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio1">Oui <code>Extra 750DA Par jour</code></label>
+                                </div>
+                                <div class="custom-control custom-radio">
                                     <input type="radio" id="customRadio2" value="0" name="foodstatus"
                                         class="custom-control-input" checked>
                                     <label class="custom-control-label" for="customRadio2">Non</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio1" value="1" name="foodstatus"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio1">Oui <code>Extra 750DA Par jour</code></label>
                                 </div>
                                 
                             </div>
@@ -278,9 +279,9 @@
                      <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Total Fees Per Month</h4>
+                                <h4 class="card-title">Total des frais</h4>
                                     <div class="form-group">
-                                        <input type="text" name="fpm" id="fpm" placeholder="Your total fees" class="form-control">
+                                        <input type="text" name="fpm" id="fpm" placeholder="Votre Total des frais" class="form-control">
                                     </div>
                             </div>
                         </div>
@@ -290,9 +291,9 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Total Amount</h4>
+                                <h4 class="card-title">Montant total</h4>
                                     <div class="form-group">
-                                        <input type="text" name="ta"  id="ta" placeholder="Total Amount here.." required class="form-control">
+                                        <input type="text" name="ta"  id="ta" placeholder="Montant total ici.." required class="form-control">
                                     </div>
                             </div>
                         </div>
@@ -307,7 +308,7 @@
 
                 <?php	
                 $aid=$_SESSION['id'];
-                    $ret="select * from userregistration where id=?";
+                    $ret="SELECT * from userregistration where id=?";
                         $stmt= $mysqli->prepare($ret) ;
                     $stmt->bind_param('i',$aid);
                     $stmt->execute();
@@ -331,7 +332,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">First Name</h4>
+                                <h4 class="card-title">Nom</h4>
                                     <div class="form-group">
                                         <input type="text" name="fname" id="fname" value="<?php echo $row->firstName;?>" class="form-control" readonly>
                                     </div>
@@ -343,19 +344,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Middle Name</h4>
-                                    <div class="form-group">
-                                        <input type="text" name="mname" id="mname" value="<?php echo $row->middleName;?>" class="form-control" readonly>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Last Name</h4>
+                                <h4 class="card-title">Prénom</h4>
                                     <div class="form-group">
                                         <input type="text" name="lname" id="lname" value="<?php echo $row->lastName;?>" class="form-control" readonly>
                                     </div>
@@ -378,7 +367,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Contact Number</h4>
+                                <h4 class="card-title">Numéro de téléphone</h4>
                                     <div class="form-group">
                                         <input type="number" name="contact" id="contact" value="<?php echo $row->contactNo;?>" class="form-control" readonly>
                                     </div>
@@ -391,7 +380,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Emergency Contact Number</h4>
+                                <h4 class="card-title">Numéro d'urgence</h4>
                                     <div class="form-group">
                                         <input type="number" name="econtact" id="econtact" class="form-control" required>
                                     </div>
@@ -403,7 +392,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Preferred Course</h4>
+                                <h4 class="card-title">Formation</h4>
                                     <div class="form-group mb-4">
                                         <select class="custom-select mr-sm-2" id="course" name="course">
                                             <option selected>Choisir...</option>

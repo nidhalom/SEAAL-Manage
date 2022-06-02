@@ -3,20 +3,18 @@
     include('../includes/dbconn.php');
     include('../includes/check-login.php');
     check_login();
-    //code for extern registration
+    //code for intern registration
     if(isset($_POST['submit'])){
         $roomno=$_POST['room'];
         $seater=$_POST['seater'];
-        // $feespm=$_POST['fpm'];
-        // $foodstatus=$_POST['foodstatus'];
+        $feespm=$_POST['fpm'];
+        $foodstatus=$_POST['foodstatus'];
         $stayfrom=$_POST['stayf'];
         $duration=$_POST['duration'];
         $course=$_POST['course'];
         $regno=$_POST['regno'];
         $fname=$_POST['fname'];
-        $mname=$_POST['mname'];
         $lname=$_POST['lname'];
-        $gender=$_POST['gender'];
         $contactno=$_POST['contact'];
         $emailid=$_POST['email'];
         $emcntno=$_POST['econtact'];
@@ -29,13 +27,11 @@
         $paddress=$_POST['paddress'];
         $pcity=$_POST['pcity'];
         $ppincode=$_POST['ppincode'];
-     // $query="INSERT into  registration(roomno,seater,feespm,foodstatus,stayfrom,duration,course,regno,firstName,middleName,lastName,gender,contactno,emailid,egycontactno,guardianName,guardianRelation,guardianContactno,corresAddress,corresCIty,corresPincode,pmntAddress,pmntCity,pmntPincode) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $query="INSERT into  registration(roomno,seater,stayfrom,duration,course,regno,firstName,middleName,lastName,gender,contactno,emailid,egycontactno,guardianName,guardianRelation,guardianContactno,corresAddress,corresCIty,corresPincode,pmntAddress,pmntCity,pmntPincode)                   values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $query="INSERT into  registration(roomno,seater,feespm,foodstatus,stayfrom,duration,course,regno,firstName,lastName,contactno,emailid,egycontactno,guardianName,guardianRelation,guardianContactno,corresAddress,corresCIty,corresPincode,pmntAddress,pmntCity,pmntPincode) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $mysqli->prepare($query);
-        // $rc=$stmt->bind_param('iiiisissssssisissississi',$roomno,$seater,$feespm,$foodstatus,$stayfrom,$duration,$course,$regno,$fname,$mname,$lname,$gender,$contactno,$emailid,$emcntno,$gurname,$gurrelation,$gurcntno,$caddress,$ccity,$cpincode,$paddress,$pcity,$ppincode);
-        $rc=$stmt->bind_param('iisissssssisissississi',$roomno,$seater,$stayfrom,$duration,$course,$regno,$fname,$mname,$lname,$gender,$contactno,$emailid,$emcntno,$gurname,$gurrelation,$gurcntno,$caddress,$ccity,$cpincode,$paddress,$pcity,$ppincode);
+        $rc=$stmt->bind_param('iiiisissssisissississi',$roomno,$seater,$feespm,$foodstatus,$stayfrom,$duration,$course,$regno,$fname,$lname,$contactno,$emailid,$emcntno,$gurname,$gurrelation,$gurcntno,$caddress,$ccity,$cpincode,$paddress,$pcity,$ppincode);
         $stmt->execute();
-        echo"<script>alert('Requested client Has Been Registered!');</script>";
+        echo"<script>alert('Succès: Réservé!');</script>";
     }
 ?>
 
@@ -58,7 +54,7 @@
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
-     <script>
+    <script>
     function getSeater(val) {
         $.ajax({
         type: "POST",
@@ -80,8 +76,8 @@
         }
         });
     }
-    </script> 
-    <!-- By Hibo -->
+    </script>
+    
 </head>
 
 <body>
@@ -103,7 +99,7 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
-            <?php include '../includes/navigation.php'?>
+            <?php include 'includes/navigation.php'?>
         </header>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
@@ -114,7 +110,7 @@
         <aside class="left-sidebar" data-sidebarbg="skin6">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar" data-sidebarbg="skin6">
-                <?php include '../includes/sidebar.php'?>
+                <?php include 'includes/sidebar.php'?>
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -125,16 +121,33 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-            
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">SEAAL Manage</h4>
+                        <div class="d-flex align-items-center">
+                            <!-- <nav aria-label="breadcrumb">
+                                
+                            </nav> -->
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                
-                <form method="POST">
+
+            <form method="POST">
                 
                 <?php
-                    $uid=$_SESSION['login'];
                     $stmt=$mysqli->prepare("SELECT emailid FROM registration WHERE emailid=? ");
                     $stmt->bind_param('s',$uid);
                     $stmt->execute();
@@ -143,12 +156,12 @@
                     $stmt->close();
 
                     if($rs){ ?>
-                    <div class="alert alert-primary alert-dismissible bg-danger text-white border-0 fade show"
+                    <div class="alert alert-primary alert-dismissible bg-primary text-white border-0 fade show"
                         role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                         </button>
-                                <strong>Info: </strong> vous avez reserver une salle!
+                                <strong>Info: </strong> Vous avez Réserver une salle!
                     </div>
                     <?php }
                     else{
@@ -156,14 +169,13 @@
 					}			
 				?>	
 
-
                 <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Réservation</h4>
-                    </div>
-
+                   <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Réservation</h4>
+                </div>
+                
+                
                 
                 <div class="row">
-
 
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
@@ -188,7 +200,7 @@
                             </div>
                         </div>
                     </div>
-<!-- By Hibo -->
+
                 
  
                     <div class="col-sm-12 col-md-6 col-lg-4">
@@ -202,6 +214,7 @@
                             </div>
                         </div>
                     </div>
+ 
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
@@ -216,12 +229,12 @@
 
 
 
-                     <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Places</h4>
                                     <div class="form-group">
-                                        <input type="text" id="seater" name="seater" placeholder="Entrez Seater No." required class="form-control">
+                                        <input type="text" id="seater" name="seater" placeholder="Entrez numéro de Seater" required class="form-control">
                                     </div>
                             </div>
                         </div>
@@ -254,75 +267,104 @@
                         </div>
                     </div>
                     
-<!-- 
+
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                         <div class="card-body">
                                 <h4 class="card-title">Food Status</h4>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio1" value="1" name="foodstatus"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio1">Required <code>Extra $211 Per Month</code></label>
+                                <input type="radio" id="customRadio1" value="1" name="foodstatus"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio1">Oui</label>  
                                 </div>
+
+                                <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                </div>
+
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="customRadio2" value="0" name="foodstatus"
                                         class="custom-control-input" checked>
-                                    <label class="custom-control-label" for="customRadio2">Not Required</label>
+                                    <label class="custom-control-label" for="customRadio2">Non</label>
                                 </div>
                                 
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
 
-                    <!-- <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Total Fees Per Month</h4>
-                                    <div class="form-group">
-                                        <input type="text" name="fpm" id="fpm" placeholder="Your total fees" class="form-control">
-                                    </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    
- 
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Total Amount</h4>
+                                <h4 class="card-title">Total des frais par mois</h4>
                                     <div class="form-group">
-                                        <input type="text" name="ta"  id="ta" placeholder="Total Amount here.." required class="form-control">
+                                        <input type="text" name="fpm" id="fpm" placeholder="Total des frais" class="form-control">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Montant total</h4>
+                                    <div class="form-group">
+                                        <input type="text" name="ta"  id="ta" placeholder="Montant total ici.." required class="form-control">
                                     </div>
                             </div>
                         </div>
                     </div>
                   
                 
-                </div> 
+                </div>
 
                 <h4 class="card-title mt-5">Informations personnelles du Client</h4>
 
                 <div class="row">
 
-                <?php	
-                $aid=$_SESSION['id'];
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Nom de Client</h4>
+                                    <div class="form-group mb-4">
+                                        <select class="custom-select mr-sm-2" name="room" id="room" onChange="getSeater(this.value);" onBlur="checkAvailability()" required id="inlineFormCustomSelect">
+                                            <option selected>Sélectionner...</option>
+                                            <?php $query ="SELECT * FROM userregistration";
+                                            $stmt2 = $mysqli->prepare($query);
+                                            $stmt2->execute();
+                                            $res=$stmt2->get_result();
+                                            while($row=$res->fetch_object())
+                                            {
+                                            ?>
+                                            <option value="<?php echo $row->firstName;?>"> <?php echo $row->firstName;?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <span id="room-availability-status" style="font-size:12px;"></span>
+                                    </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php	
+                    $aid=$_SESSION['id'];
                     $ret="select * from userregistration where id=?";
                         $stmt= $mysqli->prepare($ret) ;
                     $stmt->bind_param('i',$aid);
                     $stmt->execute();
                     $res=$stmt->get_result();
 
-                    while($row=$res->fetch_object())
-                    {
-                        ?>
-                
+                    while($row=$res->fetch_object()) {}
+                    ?>
+
                     <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Registration Number</h4>
                                         <div class="form-group">
-                                            <input type="text" name="regno" id="regno" value="<?php echo $row->regNo;?>" class="form-control" readonly>
+                                            <input type="text" name="regno" id="regno" placeholder="Enter registration number" class="form-control" required>
                                         </div>
                                 </div>
                             </div>
@@ -332,33 +374,21 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">First Name</h4>
+                                <h4 class="card-title">Nom</h4>
                                     <div class="form-group">
-                                        <input type="text" name="fname" id="fname" value="<?php echo $row->firstName;?>" class="form-control" readonly>
+                                        <input type="text" name="fname" id="fname" placeholder="Entrez le Nom" class="form-control" required>
                                     </div>
                             </div>
                         </div>
                     </div>
-<!-- 
-
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Middle Name</h4>
-                                    <div class="form-group">
-                                        <input type="text" name="mname" id="mname" value="<?php echo $row->middleName;?>" class="form-control" readonly>
-                                    </div>
-                            </div>
-                        </div>
-                    </div> -->
 
 
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Last Name</h4>
+                                <h4 class="card-title">Prénom</h4>
                                     <div class="form-group">
-                                        <input type="text" name="lname" id="lname" value="<?php echo $row->lastName;?>" class="form-control" readonly>
+                                        <input type="text" name="lname" id="lname" placeholder="Entrez le Prénom" class="form-control" required>
                                     </div>
                             </div>
                         </div>
@@ -370,7 +400,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Email</h4>
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" value="<?php echo $row->email;?>" class="form-control" readonly>
+                                        <input type="email" name="email" id="email" placeholder="Enter email address" class="form-control" required>
                                     </div>
                             </div>
                         </div>
@@ -380,73 +410,27 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Gender</h4>
+                                <h4 class="card-title">Numéro de téléphone</h4>
                                     <div class="form-group">
-                                        <input type="text" name="gender" id="gender" value="<?php echo $row->gender;?>" class="form-control" readonly>
+                                        <input type="number" name="contact" id="contact" placeholder="Entrez le Numéro de téléphone" class="form-control" required>
                                     </div>
                             </div>
                         </div>
                     </div>
 
+                    <!--  -->
 
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Contact Number</h4>
-                                    <div class="form-group">
-                                        <input type="number" name="contact" id="contact" value="<?php echo $row->contactNo;?>" class="form-control" readonly>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php }?>
-
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Emergency Contact Number</h4>
-                                    <div class="form-group">
-                                        <input type="number" name="econtact" id="econtact" class="form-control" required>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Preferred Course</h4>
-                                    <div class="form-group mb-4">
-                                        <select class="custom-select mr-sm-2" id="course" name="course">
-                                            <option selected>Choisir...</option>
-                                            <?php $query ="SELECT * FROM courses";
-                                                $stmt2 = $mysqli->prepare($query);
-                                                $stmt2->execute();
-                                                $res=$stmt2->get_result();
-                                                while($row=$res->fetch_object())
-                                                {
-                                            ?>
-                                            <option value="<?php echo $row->course_fn;?>"><?php echo $row->course_fn;?>&nbsp;&nbsp;(<?php echo $row->course_sn;?>)</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                              
-                            </div>
-                        </div>
-                    </div>
                               
                 </div>
 
-                <h4 class="card-title mt-5">Information sur la Société</h4>
+                <h4 class="card-title mt-5">Informations sur la société</h4>
 
                     <div class="row">
                     
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Raison Social</h4>
+                                    <h4 class="card-title">Raison Sociale</h4>
                                         <div class="form-group">
                                             <input type="text" name="gname" id="gname" class="form-control" placeholder="Entrez le Nom de la société" required>
                                         </div>
@@ -472,7 +456,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Contact</h4>
                                         <div class="form-group">
-                                            <input type="text" name="gcontact" id="gcontact" required class="form-control" placeholder="Entrez le numéro de contact de la société">
+                                            <input type="text" name="gcontact" id="gcontact" required class="form-control" placeholder="Entrez le Contact de Society">
                                         </div>
                                 </div>
                             </div>
@@ -489,7 +473,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Address</h4>
                                         <div class="form-group">
-                                            <input type="text" name="address" id="address" class="form-control" placeholder="Entrez L'Address" required>
+                                            <input type="text" name="address" id="address" class="form-control" placeholder="Enter Address" required>
                                         </div>
                                 </div>
                             </div>
@@ -513,7 +497,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Postal Code</h4>
                                         <div class="form-group">
-                                            <input type="text" name="pincode" id="pincode" class="form-control" placeholder="Entrez Postal Code" required>
+                                            <input type="text" name="pincode" id="pincode" class="form-control" placeholder="Entrez le Postal Code" required>
                                         </div>
                                 </div>
                             </div>
@@ -557,12 +541,12 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Address</h4>
                                         <div class="form-group">
-                                            <input type="text" name="paddress" id="paddress" class="form-control" placeholder="Entrez Address" required>
+                                            <input type="text" name="paddress" id="paddress" class="form-control" placeholder="Entrez L'Address" required>
                                         </div>
                                 </div>
                             </div>
                         </div>
-
+                                                        
 
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
@@ -642,10 +626,7 @@
     <script src="../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="../dist/js/pages/dashboards/dashboard1.min.js"></script>
 
-
-</body>
-
-<!-- Custom Ft. Script Lines -->
+    <!-- Custom Ft. Script Lines -->
 <script type="text/javascript">
 	$(document).ready(function(){
         $('input[type="checkbox"]').click(function(){
@@ -693,5 +674,7 @@
 
     })});
     </script>
+
+</body>
 
 </html>

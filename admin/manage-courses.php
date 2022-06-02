@@ -111,7 +111,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                            <a href="add-courses.php"><button type="button" class="btn btn-block btn-md btn-success">Nouvelle Formation</button></a>
+                                <div class="col-4 m-auto"><a href="add-courses.php" ><button type="button" class="btn btn-block btn-md btn-success">Nouvelle Formation</button></a>
+                            </div>
                             <hr>
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-hover table-bordered no-wrap">
@@ -143,7 +144,7 @@
                                         <td><?php echo $row->posting_date;?></td>
 
                                         <td><a href="edit-courses.php?id=<?php echo $row->id;?>" title="Modifier"><i class="icon-note"></i></a>&nbsp;&nbsp;
-                                        <a href="manage-courses.php?del=<?php echo $row->id;?>" title="Supprimer" onclick="return confirm("Do you want to delete"); ><i class="icon-close" style="color:red;"></i></a></td>
+                                        <a href="manage-courses.php?del=<?php echo $row->id;?>" title="Supprimer" onclick="return confirm('Do you want to delete');" ><i class="icon-close" style="color:red;"></i></a></td>
                                         </tr>
                                             <?php
                                                 $cnt=$cnt+1;
