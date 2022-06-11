@@ -1,38 +1,37 @@
 <?php
-    session_start();
-    include('includes/dbconn.php');
-    if(isset($_POST['login']))
-    {
-    $email=$_POST['email'];
-    $password=$_POST['password'];
+session_start();
+include('includes/dbconn.php');
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
     $password = md5($password);
-    $stmt=$mysqli->prepare("SELECT email,password,id FROM userregistration WHERE email=? and password=? ");
-        $stmt->bind_param('ss',$email,$password);
-        $stmt->execute();
-        $stmt -> bind_result($email,$password,$id);
-        $rs=$stmt->fetch();
-         $stmt->close();
-        $_SESSION['id']=$id;
-        $_SESSION['login']=$email;
-        $uip=$_SERVER['REMOTE_ADDR'];
-        $ldate=date('d/m/Y h:i:s', time());
-         if($rs){
-            $uid=$_SESSION['id'];
-            $uemail=$_SESSION['login'];
-        $ip=$_SERVER['REMOTE_ADDR'];
-        $geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
+    $stmt = $mysqli->prepare("SELECT email,password,id FROM userregistration WHERE email=? and password=? ");
+    $stmt->bind_param('ss', $email, $password);
+    $stmt->execute();
+    $stmt->bind_result($email, $password, $id);
+    $rs = $stmt->fetch();
+    $stmt->close();
+    $_SESSION['id'] = $id;
+    $_SESSION['login'] = $email;
+    $uip = $_SERVER['REMOTE_ADDR'];
+    $ldate = date('d/m/Y h:i:s', time());
+    if ($rs) {
+        $uid = $_SESSION['id'];
+        $uemail = $_SESSION['login'];
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $geopluginURL = 'http://www.geoplugin.net/php.gp?ip=' . $ip;
         $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
         $city = $addrDetailsArr['geoplugin_city'];
         $country = $addrDetailsArr['geoplugin_countryName'];
-        $log="insert into userLog(userId,userEmail,userIp,city,country) values('$uid','$uemail','$ip','$city','$country')";
+        $log = "insert into userLog(userId,userEmail,userIp,city,country) values('$uid','$uemail','$ip','$city','$country')";
         $mysqli->query($log);
-        if($log){
+        if ($log) {
             header("location:client/dashboard.php");
-                 }
-        } else {
-            echo "<script>alert('Désolé, nom d'utilisateur/email ou mot de passe invalide !');</script>";
-               }
-   }
+        }
+    } else {
+        echo "<script>alert('Désolé, nom d'utilisateur/email ou mot de passe invalide !');</script>";
+    }
+}
 ?>
 <!-- By Hibo -->
 <!DOCTYPE html>
@@ -52,13 +51,13 @@
     <link href="dist/css/style.min.css" rel="stylesheet">
 
     <script type="text/javascript">
-    function valid() {
-    if(document.registration.password.value!= document.registration.cpassword.value){
-        alert("Le mot de passe et le champ Retaper le mot de passe ne correspondent pas !");
-    document.registration.cpassword.focus();
-    return false;
-        }
-    return true;
+        function valid() {
+            if (document.registration.password.value != document.registration.cpassword.value) {
+                alert("Le mot de passe et le champ Retaper le mot de passe ne correspondent pas !");
+                document.registration.cpassword.focus();
+                return false;
+            }
+            return true;
         }
     </script>
 
@@ -84,8 +83,7 @@
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
-            style="background:url(../assets/images/big/auth-bg.jpg) no-repeat center center;">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative" style="background:url(../assets/images/big/auth-bg.jpg) no-repeat center center;">
             <div class="auth-box row">
                 <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(assets/images/Centre-img.jpg);">
                 </div>
@@ -95,28 +93,26 @@
                             <img src="assets/images/big/icon.png" alt="wrapkit">
                         </div>
                         <h2 class="mt-3 text-center">Client Login</h2>
-                        
+
                         <form class="mt-4" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="text-dark" for="uname">Email</label>
-                                        <input class="form-control" name="email" id="uname" type="email"
-                                            placeholder="Enter your email" required>
+                                        <input class="form-control" name="email" id="uname" type="email" placeholder="Enter your email" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="text-dark" for="pwd">Mot de passe</label>
-                                        <input class="form-control" name="password" id="pwd" type="password"
-                                            placeholder="Entrez votre mot de passe" required>
+                                        <input class="form-control" name="password" id="pwd" type="password" placeholder="Entrez votre mot de passe" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-center">
                                     <button type="submit" name="login" class="btn btn-block btn-dark">LOGIN</button>
                                 </div>
                                 <div class="col-lg-12 text-center mt-5">
-                                   <a href="admin/index.php" class="text-danger">Aller au panneau d'administration</a>
+                                    <a href="admin/index.php" class="text-danger">Aller au panneau d'administration</a>
                                 </div>
                             </div>
                         </form>
