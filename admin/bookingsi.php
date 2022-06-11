@@ -211,9 +211,7 @@ if (isset($_POST['submit'])) {
                                     <h4 class="card-title">Date de début</h4>
                                     <div class="form-group">
                                         <input type="date" name="stayf" id="stayf" value="<?php echo date("Y-m-d"); ?>" class="form-control" required>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -224,7 +222,6 @@ if (isset($_POST['submit'])) {
                                     <h4 class="card-title">Durée totale</h4>
                                     <div class="form-group">
                                         <input type="number" min="1" name="duration" id="duration" placeholder="Jours" class="form-control" required>
-
                                     </div>
                                 </div>
                             </div>

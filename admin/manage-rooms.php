@@ -1,19 +1,18 @@
 <?php
-    session_start();
-    include('../includes/dbconn.php');
-    include('../includes/check-login.php');
-    check_login();
+session_start();
+include('../includes/dbconn.php');
+include('../includes/check-login.php');
+check_login();
 
-    if(isset($_GET['del']))
-    {
-        $id=intval($_GET['del']);
-        $adn="DELETE from rooms where id=?";
-            $stmt= $mysqli->prepare($adn);
-            $stmt->bind_param('i',$id);
-            $stmt->execute();
-            $stmt->close();	   
-            echo "<script>alert('Record has been deleted');</script>" ;
-    }
+if (isset($_GET['del'])) {
+    $id = intval($_GET['del']);
+    $adn = "DELETE from rooms where id=?";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->close();
+    echo "<script>alert('Record has been deleted');</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +31,8 @@
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-     <!-- This page plugin CSS -->
-     <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- This page plugin CSS -->
+    <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
@@ -52,13 +51,12 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
-            <?php include 'includes/navigation.php'?>
+            <?php include 'includes/navigation.php' ?>
         </header>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
@@ -69,7 +67,7 @@
         <aside class="left-sidebar" data-sidebarbg="skin6">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar" data-sidebarbg="skin6">
-                <?php include 'includes/sidebar.php'?>
+                <?php include 'includes/sidebar.php' ?>
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -86,15 +84,15 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Salles</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Salles</h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -111,12 +109,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                            <div class="col-4 m-auto"> <a href="add-rooms.php"><button type="button" class="btn btn-block btn-md btn-success">Ajouter une salle</button></a>
-                            </div>
-                            <hr>
+                                <div class="col-4 m-auto"> <a href="add-rooms.php"><button type="button" class="btn btn-block btn-md btn-success">Ajouter une salle</button></a>
+                                </div>
+                                <hr>
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-hover table-bordered no-wrap">
-                                    <thead class="thead-dark">
+                                        <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nu. Salle</th>
@@ -127,36 +125,37 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php	
-                                            $aid=$_SESSION['id'];
-                                            $ret="SELECT * from rooms";
-                                            $stmt= $mysqli->prepare($ret) ;
-                                            //$stmt->bind_param('i',$aid);
-                                            $stmt->execute() ;//ok
-                                            $res=$stmt->get_result();
-                                            $cnt=1;
-                                            while($row=$res->fetch_object())
-                                                {
-                                                    ?>
-                                        <tr><td><?php echo $cnt;;?></td>
-                                        <td><?php echo $row->room_no;?></td>
-                                        <td><?php echo $row->seater;?></td>
-                                        <td>$<?php echo $row->fees;?></td>
-                                        <td><?php echo $row->posting_date;?></td>
-                                        <td><a href="edit-room.php?id=<?php echo $row->id;?>" title="Modifier"><i class="icon-note"></i></a>&nbsp;&nbsp;
-                                        <a href="manage-rooms.php?del=<?php echo $row->id;?>" title="Supprimer" onclick="return confirm('Do you want to delete');"><i class="icon-close" style="color:red;"></i></a></td>
-                                        </tr>
                                             <?php
-                                                $cnt=$cnt+1;
+                                            $aid = $_SESSION['id'];
+                                            $ret = "SELECT * from rooms";
+                                            $stmt = $mysqli->prepare($ret);
+                                            //$stmt->bind_param('i',$aid);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            $cnt = 1;
+                                            while ($row = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $cnt;; ?></td>
+                                                    <td><?php echo $row->room_no; ?></td>
+                                                    <td><?php echo $row->seater; ?></td>
+                                                    <td><?php echo $row->fees; ?> DA</td>
+                                                    <td><?php echo $row->posting_date; ?></td>
+                                                    <td><a href="edit-room.php?id=<?php echo $row->id; ?>" title="Modifier"><i class="icon-note"></i></a>&nbsp;&nbsp;
+                                                        <a href="manage-rooms.php?del=<?php echo $row->id; ?>" title="Supprimer" onclick="return confirm('Do you want to delete');"><i class="icon-close" style="color:red;"></i></a>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                                $cnt = $cnt + 1;
                                             } ?>
-									    </tbody>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Table Ends -->
 
             </div>

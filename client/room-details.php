@@ -1,13 +1,14 @@
 <?php
-    session_start();
-    include('../includes/dbconn.php');
-    include('../includes/check-login.php');
-    check_login();
+session_start();
+include('../includes/dbconn.php');
+include('../includes/check-login.php');
+check_login();
 ?>
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <!-- By Hibo -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +24,7 @@
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -39,13 +40,12 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
-             <?php include '../includes/client-navigation.php'?>
+            <?php include '../includes/client-navigation.php' ?>
         </header>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
@@ -56,7 +56,7 @@
         <aside class="left-sidebar" data-sidebarbg="skin6">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar" data-sidebarbg="skin6">
-                <?php include '../includes/client-sidebar.php'?>
+                <?php include '../includes/client-sidebar.php' ?>
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -67,165 +67,161 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-            
+
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                
+
                 <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Details sur ma salle</h4>
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Details sur ma salle</h4>
                 </div>
 
 
 
                 <!--Table Column -->
-                
-                 <div class="card">
-                 
-                   <div class="card-body">
-                   
-                      <div class="row">
-                      
-                      <div class="table-responsive">
-                                    <table id="zctb" class="table table-striped table-bordered no-wrap">
 
-                                        <tbody>
+                <div class="card">
 
-                                        <?php	
-                                        $aid=$_SESSION['login'];
-                                        $ret="SELECT * from registration where emailid=?";
-                                        $stmt= $mysqli->prepare($ret) ;
-                                        $stmt->bind_param('s',$aid);
-                                        $stmt->execute() ;
-                                        $res=$stmt->get_result();
-                                        $cnt=1;
-                                        while($row=$res->fetch_object())
-                                            {
-                                                ?>
+                    <div class="card-body">
 
-                                            <tr>
-                                                <td colspan="3"><b>Date & Temp d'Insciption: <?php echo $row->postingDate;?></b></td>
-                                                
-                                            </tr>
+                        <div class="row">
+
+                            <div class="table-responsive">
+                                <table id="zctb" class="table table-striped table-bordered no-wrap">
+
+                                    <tbody>
+
+                                        <?php
+                                        $aid = $_SESSION['login'];
+                                        $ret = "SELECT * from registration where emailid=?";
+                                        $stmt = $mysqli->prepare($ret);
+                                        $stmt->bind_param('s', $aid);
+                                        $stmt->execute();
+                                        $res = $stmt->get_result();
+                                        $cnt = 1;
+                                        while ($row = $res->fetch_object()) {
+                                        ?>
 
                                             <tr>
-
-                                            <td><b>Salle N# :</b></td>
-                                            <td><?php echo $row->roomno;?></td>
-
-                                            <td><b>Date de début :</b></td>
-                                            <td><?php echo $row->stayfrom;?></td>
-
-                                            <td><b>Places :</b></td>
-                                            <td><?php echo $row->seater;?></td>
-                                            <!-- By Hibo -->
+                                                <td colspan="3"><b>Date & Temp d'Insciption: <?php echo $row->postingDate; ?></b></td>
 
                                             </tr>
 
                                             <tr>
 
-                                            <td><b>Duration:</b></td>
-                                            <td><?php echo $dr=$row->duration;?> Months</td>
+                                                <td><b>Salle N# :</b></td>
+                                                <td><?php echo $row->roomno; ?></td>
 
-                                            <td><b>Food Status:</b></td>
-                                            <td>
-                                            <?php if($row->foodstatus==0){
-                                            echo "Not Required";
+                                                <td><b>Date de début :</b></td>
+                                                <td><?php echo $row->stayfrom; ?></td>
+
+                                                <td><b>Places :</b></td>
+                                                <td><?php echo $row->seater; ?></td>
+                                                <!-- By Hibo -->
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td><b>Duration:</b></td>
+                                                <td><?php echo $dr = $row->duration; ?> Jours</td>
+
+                                                <td><b>Food Status:</b></td>
+                                                <td>
+                                                    <?php if ($row->foodstatus == 0) {
+                                                        echo "Not Required";
+                                                    } else {
+                                                        echo "Required";
+                                                    }; ?> </td>
+
+                                                <td><b>Frais par jour :</b></td>
+                                                <td><?php echo $fpm = $row->feespm; ?> DA</td>
+
+
+
+                                            </tr>
+
+                                            <!-- <tr>
+                                            <td colspan="6"><b>Total Fees (<?php echo ($dr) . ' Jours' ?>) : 
+                                            <?php if ($row->foodstatus == 1) {
+                                                $fd = 211;
+                                                echo '$' . (($fd + $fpm) * $dr);
                                             } else {
-                                            echo "Required";
-                                            }
-                                            ;?> </td>
-
-                                            <td><b>Fees Per Month :</b></td>
-                                            <td>$<?php echo $fpm=$row->feespm;?></td>
-
-                                            
-
-                                             </tr>
-
-                                           <!-- <tr>
-                                            <td colspan="6"><b>Total Fees (<?php echo ($dr).' months'?>) : 
-                                            <?php if($row->foodstatus==1){ 
-                                            $fd=211; 
-                                            echo '$'.(($fd+$fpm)*$dr);
-                                            } else {
-                                            echo '$'.$dr*$fpm;
+                                                echo '$' . $dr * $fpm;
                                             }
                                             ?></b></td>
                                             </tr> -->
 
 
                                             <tr>
-                                            <td><b>Numuro D'inscription :</b></td>
-                                            <td><?php echo $row->regno;?></td>
-                                            <td><b>Nom et prenom :</b></td>
-                                            <td><?php echo $row->firstName;?> <?php echo $row->middleName;?> <?php echo $row->lastName;?></td>
-                                            <td><b>Address Email:</b></td>
-                                            <td><?php echo $row->emailid;?></td>
+                                                <td><b>Numuro D'inscription :</b></td>
+                                                <td><?php echo $row->regno; ?></td>
+                                                <td><b>Nom et prenom :</b></td>
+                                                <td><?php echo $row->firstName; ?> <?php echo $row->middleName; ?> <?php echo $row->lastName; ?></td>
+                                                <td><b>Address Email:</b></td>
+                                                <td><?php echo $row->emailid; ?></td>
                                             </tr>
 
 
                                             <tr>
-                                            <td><b>Numuro telephone :</b></td>
-                                            <td><?php echo $row->contactno;?></td>
-                                            <td><b>Gender :</b></td>
-                                            <td><?php echo $row->gender;?></td>
-                                            <td><b>Selected Formation :</b></td>
-                                            <td><?php echo $row->course;?></td>
+                                                <td><b>Numuro telephone :</b></td>
+                                                <td><?php echo $row->contactno; ?></td>
+                                                <td><b>Selected Formation :</b></td>
+                                                <td><?php echo $row->course; ?></td>
                                             </tr>
 
- <!--
-                                            <tr>
-                                            <td><b>Emergency Contact N# :</b></td>
-                                            <td><?php echo $row->egycontactno;?></td>
-                                            <td><b>Guardian Name :</b></td>
-                                            <td><?php echo $row->guardianName;?></td>
-                                            <td><b>Guardian Relation :</b></td>
-                                            <td><?php echo $row->guardianRelation;?></td>
-                                            </tr>
 
                                             <tr>
-                                            <td><b>Guardian Contact No. :</b></td>
-                                            <td colspan="6"><?php echo $row->guardianContactno;?></td>
+                                                <td><b>Emergency Contact N# :</b></td>
+                                                <td><?php echo $row->egycontactno; ?></td>
+                                                <td><b>Nom de Society :</b></td>
+                                                <td><?php echo $row->guardianName; ?></td>
+                                                <td><b>Guardian Relation :</b></td>
+                                                <td><?php echo $row->guardianRelation; ?></td>
                                             </tr>
 
                                             <tr>
-                                            <td><b>Current Address:</b></td>
-                                            <td colspan="2">
-                                            <?php echo $row->corresAddress;?><br />
-                                            <?php echo $row->corresCIty;?>, <?php echo $row->corresPincode;?><br />
-                                            <?php echo $row->corresState;?>
+                                                <td><b>Guardian Contact No. :</b></td>
+                                                <td colspan="6"><?php echo $row->guardianContactno; ?></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Current Address:</b></td>
+                                                <td colspan="2">
+                                                    <?php echo $row->corresAddress; ?><br />
+                                                    <?php echo $row->corresCIty; ?>, <?php echo $row->corresPincode; ?><br />
+                                                    <?php echo $row->corresState; ?>
 
 
-                                            </td>
-                                            <td><b>Permanent Address:</b></td>
-                                            <td colspan="2">
-                                            <?php echo $row->pmntAddress;?><br />
-                                            <?php echo $row->pmntCity;?>, <?php echo $row->pmntPincode;?><br />	
+                                                </td>
+                                                <td><b>Permanent Address:</b></td>
+                                                <td colspan="2">
+                                                    <?php echo $row->pmntAddress; ?><br />
+                                                    <?php echo $row->pmntCity; ?>, <?php echo $row->pmntPincode; ?><br />
 
-                                            </td>
-                                            </tr> 
-                                            !-->
+                                                </td>
+                                            </tr>
 
 
-                                            <?php
-                                            $cnt=$cnt+1;
-                                            } ?>
 
-                                        </tbody>
-                                    </table>
-                                   
-                                </div>
-                      
-                      
-                      </div>
-                   
-                   
-                   </div>
-                 
-                 
-                 </div>
+                                        <?php
+                                            $cnt = $cnt + 1;
+                                        } ?>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
 
                 <!-- Table column end -->
 

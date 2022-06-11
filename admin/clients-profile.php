@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    include('../includes/dbconn.php');
-    include('../includes/check-login.php');
-    check_login();
+session_start();
+include('../includes/dbconn.php');
+include('../includes/check-login.php');
+check_login();
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
-    
+
 </head>
 
 <body>
@@ -40,13 +40,12 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
-            <?php include 'includes/navigation.php'?>
+            <?php include 'includes/navigation.php' ?>
         </header>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
@@ -57,7 +56,7 @@
         <aside class="left-sidebar" data-sidebarbg="skin6">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar" data-sidebarbg="skin6">
-                <?php include 'includes/sidebar.php'?>
+                <?php include 'includes/sidebar.php' ?>
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -76,14 +75,14 @@
 
 
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Tous les détails</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Tous les détails</h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -95,155 +94,148 @@
             <div class="container-fluid">
 
                 <!--Table Column -->
-                
+
                 <div class="card">
-                 
-                 <div class="card-body">
-                 
-                    <div class="row">
-                    
-                    <div class="table-responsive">
-                                  <table id="zctb" class="table table-striped table-bordered no-wrap">
 
-                                      <tbody>
+                    <div class="card-body">
 
-                                      <?php	
-                                      
-                                      $id=$_GET['id'];  
-                                        $ret="SELECT * from registration where id=?";
-                                        $stmt= $mysqli->prepare($ret) ;
-                                    $stmt->bind_param('i',$id);
-                                    $stmt->execute() ;//ok
-                                    $res=$stmt->get_result();
-                                    //$cnt=1;
-                                    while($row=$res->fetch_object())
-                                    {
-                                              ?>
-                                        
+                        <div class="row">
 
-                                          <tr>
-                                              <td colspan="3"><b>Date & Time of Registration: <?php echo $row->postingDate;?></b></td>
-                                              
-                                          </tr>
+                            <div class="table-responsive">
+                                <table id="zctb" class="table table-striped table-bordered no-wrap">
 
-                                          <tr>
-                                          <td><b>Registration Number :</b></td>
-                                          <td><?php echo $row->regno;?></td>
-                                          <td><b>Full Name :</b></td>
-                                          <td><?php echo $row->firstName;?> <?php echo $row->middleName;?> <?php echo $row->lastName;?></td>
-                                          <td><b>Email Address:</b></td>
-                                          <td><?php echo $row->emailid;?></td>
-                                          </tr>
-<!-- 
+                                    <tbody>
 
-                                          <tr>
-                                          <td><b>Numéro de téléphone :</b></td>
-                                          <td><?php echo $row->contactno;?></td>
-                                          <td><b>Gender :</b></td>
-                                          <td><?php echo $row->gender;?></td>
-                                          <td><b>Selected Course :</b></td>
-                                          <td><?php echo $row->course;?></td>
-                                          </tr> -->
+                                        <?php
+
+                                        $id = $_GET['id'];
+                                        $ret = "SELECT * from registration where id=?";
+                                        $stmt = $mysqli->prepare($ret);
+                                        $stmt->bind_param('i', $id);
+                                        $stmt->execute(); //ok
+                                        $res = $stmt->get_result();
+                                        //$cnt=1;
+                                        while ($row = $res->fetch_object()) {
+                                        ?>
 
 
-                                          <tr>
-                                          <td><b>Emergency Contact No. :</b></td>
-                                          <td><?php echo $row->egycontactno;?></td>
-                                          <td><b>Guardian Name :</b></td>
-                                          <td><?php echo $row->guardianName;?></td>
-                                          <td><b>Guardian Relation :</b></td>
-                                          <td><?php echo $row->guardianRelation;?></td>
-                                          </tr>
+                                            <tr>
+                                                <td colspan="3"><b>Date & Time of Registration: <?php echo $row->postingDate; ?></b></td>
 
-                                          <tr>
-                                          <td><b>Guardian Contact No. :</b></td>
-                                          <td colspan="6"><?php echo $row->guardianContactno;?></td>
-                                          </tr>
+                                            </tr>
 
-                                          <tr>
-                                          <td><b>Current Address:</b></td>
-                                          <td colspan="2">
-                                          <?php echo $row->corresAddress;?><br />
-                                          <?php echo $row->corresCIty;?>, <?php echo $row->corresPincode;?><br />
-                                          <?php echo $row->corresState;?>
+                                            <tr>
+                                                <td><b>Registration Number :</b></td>
+                                                <td><?php echo $row->regno; ?></td>
+                                                <td><b>Full Name :</b></td>
+                                                <td><?php echo $row->firstName; ?> <?php echo $row->middleName; ?> <?php echo $row->lastName; ?></td>
+                                                <td><b>Email Address:</b></td>
+                                                <td><?php echo $row->emailid; ?></td>
+                                            </tr>
 
 
-                                          </td>
-                                          <td><b>Permanent Address:</b></td>
-                                          <td colspan="2">
-                                          <?php echo $row->pmntAddress;?><br />
-                                          <?php echo $row->pmntCity;?>, <?php echo $row->pmntPincode;?><br />	
-
-                                          </td>
-                                          </tr>
-
-                                          <tr>
-
-                                          <td><b>N° Salle  :</b></td>
-                                          <td><?php echo $row->roomno;?></td>
-
-                                          <td><b>Date de début :</b></td>
-                                          <td><?php echo $row->stayfrom;?></td>
-
-                                          
-                                          
-                                                                                    <td><b>Places :</b></td>
-                                                                                    <td>  <?php echo $row->seater;?>  </td>
-                                        </tr> 
-                                        
-                                           <tr>
-
-                                          <td><b>Duration:</b></td>
-                                          <td><?php echo $dr=$row->duration;?> Months</td>
-
-                                          <td><b>Status:</b></td>
-                                          <td>
-                                          <?php if($row->foodstatus==0){
-                                          echo "Not Required";
-                                          } else {
-                                          echo "Required";
-                                          }
-                                          ;?> </td>
-
-                                          <td><b>Per Month :</b></td>
-                                          <td>$<?php echo $fpm=$row->feespm;?></td>  </tr>
-
-                                          
-
-                                          
-
-                                          <tr>
-                                          <td colspan="6"><b>Total des frais (<?php echo ($dr).' months'?>) : 
-                                          <?php if($row->foodstatus==1){ 
-                                          $fd=211; 
-                                          echo '$'.(($fd+$fpm)*$dr);
-                                          } else {
-                                          echo '$'.$dr*$fpm;
-                                          }
-                                          ?></b></td>
-                                          </tr>
+                                            <tr>
+                                                <td><b>Numéro de téléphone :</b></td>
+                                                <td><?php echo "0" ?><?php echo $row->contactno; ?></td>
+                                            </tr>
 
 
-                                          
+                                            <tr>
+                                                <td><b>Raison Social :</b></td>
+                                                <td><?php echo $row->guardianName; ?></td>
+                                                <td><b>Relation :</b></td>
+                                                <td><?php echo $row->guardianRelation; ?></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Numéro téléphone de society :</b></td>
+                                                <td colspan="6"><?php echo "0" ?><?php echo $row->guardianContactno; ?></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Address:</b></td>
+                                                <td colspan="2">
+                                                    <?php echo $row->corresAddress; ?><br />
+                                                    <?php echo $row->corresCIty; ?>, <?php echo $row->corresPincode; ?><br />
+                                                    <?php echo $row->corresState; ?>
 
 
-                                          <?php } ?>
+                                                </td>
+                                                <td><b>Adresse permanente :</b></td>
+                                                <td colspan="2">
+                                                    <?php echo $row->pmntAddress; ?><br />
+                                                    <?php echo $row->pmntCity; ?>, <?php echo $row->pmntPincode; ?><br />
 
-                                      </tbody>
-                                  </table>
-                                 
-                              </div>
-                    
-                    
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td><b>N° Salle :</b></td>
+                                                <td><?php echo $row->roomno; ?></td>
+
+                                                <td><b>Date de début :</b></td>
+                                                <td><?php echo $row->stayfrom; ?></td>
+
+
+
+                                                <td><b>Places :</b></td>
+                                                <td> <?php echo $row->seater; ?> </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td><b>Duration:</b></td>
+                                                <td><?php echo $dr = $row->duration; ?> Jours</td>
+
+                                                <td><b>Food Status:</b></td>
+                                                <td>
+                                                    <?php if ($row->foodstatus == 0) {
+                                                        echo "Non";
+                                                    } else {
+                                                        echo "Oui";
+                                                    }; ?> </td>
+
+                                                <td><b>Frais Par Jour :</b></td>
+                                                <td><?php echo $fpm = $row->feespm; ?> DA</td>
+                                            </tr>
+
+
+
+
+
+                                            <tr>
+                                                <td colspan="6"><b>Total des frais :(<?php echo ($dr) . ' Jours' ?>) :
+                                                        <?php if ($row->foodstatus == 1) {
+                                                            $fd = 750;
+                                                            echo (($fd + $fpm) * $dr) . ' DA';
+                                                        } else {
+                                                            echo $dr * $fpm . ' DA';
+                                                        }
+                                                        ?></b></td>
+                                            </tr>
+
+
+
+
+
+                                        <?php } ?>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+                        </div>
+
+
                     </div>
-                 
-                 
-                 </div>
-               
-               
-               </div>
 
-              <!-- Table column end -->
+
+                </div>
+
+                <!-- Table column end -->
 
             </div>
             <!-- ============================================================== -->
