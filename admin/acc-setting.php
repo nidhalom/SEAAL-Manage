@@ -1,33 +1,30 @@
 <?php
-    session_start();
-    include('../includes/dbconn.php');
-    include('../includes/check-login.php');
-    check_login();
+session_start();
+include('../includes/dbconn.php');
+include('../includes/check-login.php');
+check_login();
 
-    if(isset($_POST['changepwd'])){
-    $op=$_POST['oldpassword'];
-    $np=$_POST['newpassword'];
-    $ai=$_SESSION['id'];
-    $udate=date('Y-m-d');
-        $sql="SELECT password FROM admin where password=?";
-        $chngpwd = $mysqli->prepare($sql);
-        $chngpwd->bind_param('s',$op);
-        $chngpwd->execute();
-        $chngpwd->store_result(); 
-        $row_cnt=$chngpwd->num_rows;;
-        if($row_cnt>0)
-        {
-            $con="mettre à jour le mot de passe défini par l'administrateur=?,updation_date=? où id=?";
-    $chngpwd1 = $mysqli->prepare($con);
-    $chngpwd1->bind_param('ssi',$np,$udate,$ai);
-    $chngpwd1->execute();
-            $_SESSION['msg']="Le mot de passe a été changé";
-        } else {
-            $_SESSION['msg']="Le mot de passe actuel ne correspond pas";
-        }	
-        
-
+if (isset($_POST['changepwd'])) {
+    $op = $_POST['oldpassword'];
+    $np = $_POST['newpassword'];
+    $ai = $_SESSION['id'];
+    $udate = date('Y-m-d');
+    $sql = "SELECT password FROM admin where password=?";
+    $chngpwd = $mysqli->prepare($sql);
+    $chngpwd->bind_param('s', $op);
+    $chngpwd->execute();
+    $chngpwd->store_result();
+    $row_cnt = $chngpwd->num_rows;;
+    if ($row_cnt > 0) {
+        $con = "mettre à jour le mot de passe défini par l'administrateur=?,updation_date=? où id=?";
+        $chngpwd1 = $mysqli->prepare($con);
+        $chngpwd1->bind_param('ssi', $np, $udate, $ai);
+        $chngpwd1->execute();
+        $_SESSION['msg'] = "Le mot de passe a été changé";
+    } else {
+        $_SESSION['msg'] = "Le mot de passe actuel ne correspond pas";
     }
+}
 
 ?>
 
@@ -47,8 +44,8 @@
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-     <!-- This page plugin CSS -->
-     <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- This page plugin CSS -->
+    <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
@@ -67,13 +64,12 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
-            <?php include 'includes/navigation.php'?>
+            <?php include 'includes/navigation.php' ?>
         </header>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
@@ -84,7 +80,7 @@
         <aside class="left-sidebar" data-sidebarbg="skin6">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar" data-sidebarbg="skin6">
-                <?php include 'includes/sidebar.php'?>
+                <?php include 'includes/sidebar.php' ?>
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -101,25 +97,23 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Changer le mot de passe</h4>
-                        
-                        
-                        <?php if(isset($_POST['changepwd']))
-                            { ?>
-                                <div class="alert alert-secondary alert-dismissible bg-secondary text-white border-0 fade show"
-                                    role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <strong>Info - </strong> <?php echo htmlentities($_SESSION['msg']); ?> <?php echo htmlentities($_SESSION['msg']=""); ?>
-                                </div>
-						<?php } ?>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Changer le mot de passe</h4>
 
-                            
-                        
-                        
+
+                        <?php if (isset($_POST['changepwd'])) { ?>
+                            <div class="alert alert-secondary alert-dismissible bg-secondary text-white border-0 fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>Info - </strong> <?php echo htmlentities($_SESSION['msg']); ?> <?php echo htmlentities($_SESSION['msg'] = ""); ?>
+                            </div>
+                        <?php } ?>
+
+
+
+
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -140,11 +134,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Mot de passe actuel</h4>
-                                        <div class="form-group">
+                                    <div class="form-group">
                                         <input type="password" value="" name="oldpassword" id="oldpassword" class="form-control" onBlur="checkpass()" required="required">
                                         <span id="password-availability-status" style="font-size:12px;"></span>
-                                        </div>
-                                    
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -155,10 +149,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Nouveau mot de passe</h4>
-                                        <div class="form-group">
+                                    <div class="form-group">
                                         <input type="password" class="form-control" name="newpassword" id="newpassword" value="" required="required">
-                                        </div>
-                                    
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -168,42 +162,42 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Confirmation mot de passe</h4>
-                                        <div class="form-group">
-                                        <input type="password" class="form-control" value="" required="required" id="cpassword" name="cpassword" >
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" value="" required="required" id="cpassword" name="cpassword">
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <?php	
-                        $aid=$_SESSION['id'];
-                        $ret="SELECT * from admin where id=?";
-                            $stmt= $mysqli->prepare($ret) ;
-                        $stmt->bind_param('i',$aid);
-                        $stmt->execute() ;//ok
-                        $res=$stmt->get_result();
+                        <?php
+                        $aid = $_SESSION['id'];
+                        $ret = "SELECT * from admin where id=?";
+                        $stmt = $mysqli->prepare($ret);
+                        $stmt->bind_param('i', $aid);
+                        $stmt->execute(); //ok
+                        $res = $stmt->get_result();
                         //$cnt=1;
-                        while($row=$res->fetch_object())
-                        {
-                            ?>
+                        while ($row = $res->fetch_object()) {
+                        ?>
 
-                        <h6 class="card-subtitle"><code>Last Updated On: </code> <?php echo $row->updation_date; }?> </h6>
+                            <h6 class="card-subtitle"><code>Last Updated On: </code> <?php echo $row->updation_date;
+                                                                                    } ?> </h6>
 
 
 
                     </div>
 
 
-                        <div class="form-actions">
-                            <div class="text-center">
-                                <button type="submit" name="changepwd" class="btn btn-success">Make Changes</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                            </div>
+                    <div class="form-actions">
+                        <div class="text-center">
+                            <button type="submit" name="changepwd" class="btn btn-success">Make Changes</button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
                         </div>
+                    </div>
 
-                 
-                 </form>
-                 
+
+                </form>
+
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -248,35 +242,35 @@
     <script src="../dist/js/pages/datatable/datatable-basic.init.js"></script>
 
     <script>
-    function checkAvailability() {
-        $("#loaderIcon").show();
-        jQuery.ajax({
-            url: "check-availability-admin.php",
-            data:'emailid='+$("#emailid").val(),
-            type: "POST",
-        success:function(data){
-            $("#user-availability-status").html(data);
-            $("#loaderIcon").hide();
-        },
-        error:function (){}
-        });
-    }
+        function checkAvailability() {
+            $("#loaderIcon").show();
+            jQuery.ajax({
+                url: "check-availability-admin.php",
+                data: 'emailid=' + $("#emailid").val(),
+                type: "POST",
+                success: function(data) {
+                    $("#user-availability-status").html(data);
+                    $("#loaderIcon").hide();
+                },
+                error: function() {}
+            });
+        }
     </script>
 
     <script>
-    function checkpass() {
-        $("#loaderIcon").show();
-        jQuery.ajax({
-            url: "check-availability-admin.php",
-            data:'oldpassword='+$("#oldpassword").val(),
-            type: "POST",
-        success:function(data){
-            $("#password-availability-status").html(data);
-            $("#loaderIcon").hide();
-        },
-        error:function (){}
-        });
-    }
+        function checkpass() {
+            $("#loaderIcon").show();
+            jQuery.ajax({
+                url: "check-availability-admin.php",
+                data: 'oldpassword=' + $("#oldpassword").val(),
+                type: "POST",
+                success: function(data) {
+                    $("#password-availability-status").html(data);
+                    $("#loaderIcon").hide();
+                },
+                error: function() {}
+            });
+        }
     </script>
 
 </body>
