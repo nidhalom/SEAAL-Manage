@@ -15,10 +15,10 @@ check_login();
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Details du salle</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -40,7 +40,8 @@ check_login();
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -103,107 +104,107 @@ check_login();
                                         while ($row = $res->fetch_object()) {
                                         ?>
 
-                                            <tr>
-                                                <td colspan="3"><b>Date & Temp d'Insciption: <?php echo $row->postingDate; ?></b></td>
+                                        <tr>
+                                            <td colspan="3"><b>Date et heure d'inscription:
+                                                    <?php echo $row->postingDate; ?></b></td>
 
-                                            </tr>
+                                        </tr>
 
-                                            <tr>
+                                        <tr>
 
-                                                <td><b>Salle N# :</b></td>
-                                                <td><?php echo $row->roomno; ?></td>
+                                            <td><b>N° Salle :</b></td>
+                                            <td><?php echo $row->roomno; ?></td>
 
-                                                <td><b>Date de début :</b></td>
-                                                <td><?php echo $row->stayfrom; ?></td>
+                                            <td><b>Date de début :</b></td>
+                                            <td><?php echo $row->stayfrom; ?></td>
 
-                                                <td><b>Places :</b></td>
-                                                <td><?php echo $row->seater; ?></td>
-                                                <!-- By Hibo -->
+                                            <td><b>Places :</b></td>
+                                            <td><?php echo $row->seater; ?></td>
+                                            <!-- By Hibo -->
 
-                                            </tr>
+                                        </tr>
 
-                                            <tr>
+                                        <tr>
 
-                                                <td><b>Duration:</b></td>
-                                                <td><?php echo $dr = $row->duration; ?> Jours</td>
-
-                                                <td><b>Food Status:</b></td>
-                                                <td>
-                                                    <?php if ($row->foodstatus == 0) {
-                                                        echo "Not Required";
-                                                    } else {
-                                                        echo "Required";
-                                                    }; ?> </td>
-
-                                                <td><b>Frais par jour :</b></td>
-                                                <td><?php echo $fpm = $row->feespm; ?> DA</td>
+                                            <td><b>Duration:</b></td>
+                                            <td><?php echo $dr = $row->duration; ?> Jours</td>
 
 
 
-                                            </tr>
 
-                                            <!-- <tr>
-                                            <td colspan="6"><b>Total Fees (<?php echo ($dr) . ' Jours' ?>) : 
-                                            <?php if ($row->foodstatus == 1) {
-                                                $fd = 211;
-                                                echo '$' . (($fd + $fpm) * $dr);
-                                            } else {
-                                                echo '$' . $dr * $fpm;
-                                            }
-                                            ?></b></td>
-                                            </tr> -->
+                                        </tr>
 
 
-                                            <tr>
-                                                <td><b>Numuro D'inscription :</b></td>
-                                                <td><?php echo $row->regno; ?></td>
-                                                <td><b>Nom et prenom :</b></td>
-                                                <td><?php echo $row->firstName; ?> <?php echo $row->middleName; ?> <?php echo $row->lastName; ?></td>
-                                                <td><b>Address Email:</b></td>
-                                                <td><?php echo $row->emailid; ?></td>
-                                            </tr>
+                                        <tr>
+                                            <td><b>Code D'inscription :</b></td>
+                                            <td><?php echo $row->regno; ?></td>
+                                            <td><b>Nom et prénom :</b></td>
+                                            <td><?php echo $row->firstName; ?> <?php echo $row->middleName; ?>
+                                                <?php echo $row->lastName; ?></td>
+                                            <td><b>Address Email:</b></td>
+                                            <td><?php echo $row->emailid; ?></td>
+                                        </tr>
 
 
-                                            <tr>
-                                                <td><b>Numuro telephone :</b></td>
-                                                <td><?php echo $row->contactno; ?></td>
-                                                <td><b>Selected Formation :</b></td>
-                                                <td><?php echo $row->course; ?></td>
-                                            </tr>
+                                        <tr>
+                                            <td><b>Numéro de téléphone :</b></td>
+                                            <td><?php echo "0" ?><?php echo $row->contactno; ?></td>
+                                        </tr>
 
 
-                                            <tr>
-                                                <td><b>Emergency Contact N# :</b></td>
-                                                <td><?php echo $row->egycontactno; ?></td>
-                                                <td><b>Nom de Society :</b></td>
-                                                <td><?php echo $row->guardianName; ?></td>
-                                                <td><b>Guardian Relation :</b></td>
-                                                <td><?php echo $row->guardianRelation; ?></td>
-                                            </tr>
+                                        <tr>
+                                            <td><b>Nom de Society :</b></td>
+                                            <td><?php echo $row->guardianName; ?></td>
+                                            <td><b>Relation :</b></td>
+                                            <td><?php echo $row->guardianRelation; ?></td>
+                                        </tr>
 
-                                            <tr>
-                                                <td><b>Guardian Contact No. :</b></td>
-                                                <td colspan="6"><?php echo $row->guardianContactno; ?></td>
-                                            </tr>
+                                        <tr>
+                                            <td><b>Numéro téléphone de society :</b></td>
+                                            <td colspan="6"><?php echo "0" ?><?php echo $row->guardianContactno; ?></td>
+                                        </tr>
 
-                                            <tr>
-                                                <td><b>Current Address:</b></td>
-                                                <td colspan="2">
-                                                    <?php echo $row->corresAddress; ?><br />
-                                                    <?php echo $row->corresCIty; ?>, <?php echo $row->corresPincode; ?><br />
-                                                    <?php echo $row->corresState; ?>
-
-
-                                                </td>
-                                                <td><b>Permanent Address:</b></td>
-                                                <td colspan="2">
-                                                    <?php echo $row->pmntAddress; ?><br />
-                                                    <?php echo $row->pmntCity; ?>, <?php echo $row->pmntPincode; ?><br />
-
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td><b>Address:</b></td>
+                                            <td colspan="2">
+                                                <?php echo $row->corresAddress; ?><br />
+                                                <?php echo $row->corresCIty; ?>,
+                                                <?php echo $row->corresPincode; ?><br />
+                                                <?php echo $row->corresState; ?>
 
 
+                                            </td>
+                                            <td><b>Adresse permanente:</b></td>
+                                            <td colspan="2">
+                                                <?php echo $row->pmntAddress; ?><br />
+                                                <?php echo $row->pmntCity; ?>, <?php echo $row->pmntPincode; ?><br />
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Food Status:</b></td>
+                                            <td>
+                                                <?php if ($row->foodstatus == 0) {
+                                                              echo "Non";
+                                                        } else {
+                                                              echo "Oui";
+                                                        }; ?> </td>
+
+                                            <td><b>Frais par jour :</b></td>
+                                            <td><?php echo $fpm = $row->feespm; ?> DA</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="6"><b>Total des frais (<?php echo ($dr) . ' Jours' ?>) :
+                                                    <?php if ($row->foodstatus == 1) {
+                                                    $fd = 750;
+                                                    echo(($fd + $fpm) * $dr) . ' DA' ;
+                                                } else {
+                                                    echo  $dr * $fpm . ' DA';
+                                                }
+                                                ?></b></td>
+                                        </tr>
 
                                         <?php
                                             $cnt = $cnt + 1;

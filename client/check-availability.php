@@ -4,7 +4,7 @@
         $email= $_POST["emailid"];
         if (filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
 
-            echo "error : You did not enter a valid email.";
+            echo "erreur : Vous n'avez pas saisi d'email valide.";
         } else {
             $result ="SELECT count(*) FROM userRegistration WHERE email=?";
             $stmt = $mysqli->prepare($result);
@@ -47,8 +47,8 @@
     $stmt->fetch();
     $stmt->close();
     if($count>0)
-    echo "<span style='color:red'>$count. les places sont déjà pleines.</span>";
+    echo "<span style='color:red'>Salle déjà Réserver.</span>";
     else
-        echo "<span style='color:red'>Tous les places sont disponibles</span>";
+        echo "<span style='color:red'>Salle disponible  </span>";
     }
 ?>

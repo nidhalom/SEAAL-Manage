@@ -9,32 +9,31 @@
     {
 
     $fname=$_POST['fname'];
-    $mname=$_POST['mname'];
     $lname=$_POST['lname'];
-    $gender=$_POST['gender'];
     $contactno=$_POST['contact'];
     $udate = date('d-m-Y h:i:s', time());
-    $query="UPDATE  userRegistration set firstName=?,middleName=?,lastName=?,gender=?,contactNo=?,updationDate=? where id=?";
+    $query="UPDATE  userRegistration set firstName=?,middleName=?,lastName=?,contactNo=?,updationDate=? where id=?";
     $stmt = $mysqli->prepare($query);
-    $rc=$stmt->bind_param('ssssisi',$fname,$mname,$lname,$gender,$contactno,$udate,$aid);
+    $rc=$stmt->bind_param('sssisi',$fname,$mname,$lname,$contactno,$udate,$aid);
     $stmt->execute();
-    echo"<script>alert('Profile updated Succssfully');</script>";
+    echo"<script>alert('Le Profil a été mis à jour avec succès');</script>";
     }
 ?>
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <!-- By Hibo -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Mon Profile</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -50,7 +49,7 @@
             } return true;
      }
     </script> -->
-    
+
 </head>
 
 <body>
@@ -99,9 +98,9 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                
+
                 <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">My Profile</h4>
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Mon Profile</h4>
                 </div>
 
 
@@ -118,49 +117,52 @@
                         while($row=$res->fetch_object())
                         {
                             ?>
-    
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Last Updated On</h4>
-                                        <div class="form-group">
-                                            <input type="text" value="<?php echo $row->updationDate; ?>" class="form-control" required readonly>
-                                        </div>
-                                    
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Dernière mise à jour le</h4>
+                                <div class="form-group">
+                                    <input type="text" value="<?php echo $row->updationDate; ?>" class="form-control"
+                                        required readonly>
                                 </div>
+
                             </div>
                         </div>
+                    </div>
 
-<!-- By Hibo -->
+                    <!-- By Hibo -->
 
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Numéro d'immatriculation</h4>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" value="<?php echo $row->regNo;?>" required readonly>
-                                        </div>
-                                    
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Numéro d'immatriculation</h4>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="<?php echo $row->regNo;?>" required
+                                        readonly>
                                 </div>
+
                             </div>
                         </div>
+                    </div>
 
 
                 </div>
-                
-                    
-                    <form name="registration" onSubmit="return valid();" method="POST">
+
+
+                <form name="registration" onSubmit="return valid();" method="POST">
 
                     <div class="row">
-                    
+
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Nom</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="fname" id="fname" class="form-control" value="<?php echo $row->firstName;?>"   required="required">
-                                        </div>
-                                    
+                                    <div class="form-group">
+                                        <input type="text" name="fname" id="fname" class="form-control"
+                                            value="<?php echo $row->firstName;?>" required="required">
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -170,27 +172,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Prénom</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="lname" id="lname" class="form-control" value="<?php echo $row->lastName;?>" required="required">
-                                        </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Gender</h4>
-                                    <div class="form-group mb-4">
-                                        <select class="custom-select mr-sm-2" id="gender" name="gender">
-                                            <option value="<?php echo $row->gender;?>"><?php echo $row->gender;?></option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
+                                    <div class="form-group">
+                                        <input type="text" name="lname" id="lname" class="form-control"
+                                            value="<?php echo $row->lastName;?>" required="required">
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -200,37 +186,40 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Email Address</h4>
-                                        <div class="form-group">
-                                            <input type="email" name="email" id="email" class="form-control" value="<?php echo $row->email;?>" readonly>
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            value="<?php echo $row->email;?>" readonly>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-<!-- By Hibo -->
+                        <!-- By Hibo -->
 
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Numéro de téléphone</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="contact" id="contact" maxlength="10" class="form-control" value="<?php echo $row->contactNo;?>" required="required">
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="text" name="contact" id="contact" maxlength="10"
+                                            class="form-control" value="<?php echo "0" . $row->contactNo;?>"
+                                            required="required">
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <?php } ?>
-                    
+
                     </div>
 
-                        <div class="form-actions">
-                            <div class="text-center">
-                                <button type="submit" name="update" class="btn btn-success">Changer</button>
-                            </div>
+                    <div class="form-actions">
+                        <div class="text-center">
+                            <button type="submit" name="update" class="btn btn-success">Changer</button>
                         </div>
+                    </div>
 
-                    </form>
+                </form>
 
 
 
@@ -260,7 +249,8 @@
     <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- apps --><!-- By Hibo -->
+    <!-- apps -->
+    <!-- By Hibo -->
     <!-- apps -->
     <script src="../dist/js/app-style-switcher.js"></script>
     <script src="../dist/js/feather.min.js"></script>

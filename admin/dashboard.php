@@ -15,10 +15,10 @@ check_login();
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Dashboard</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -41,7 +41,8 @@ check_login();
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -100,10 +101,12 @@ check_login();
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium"><?php include 'counters/client-count.php' ?></h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium">
+                                            <?php include 'counters/client-count.php' ?></h2>
 
                                     </div>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Clients enregistrés</h6>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Clients
+                                        enregistrés</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
@@ -115,7 +118,8 @@ check_login();
                         <div class="card-body">
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
-                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><?php include 'counters/room-count.php' ?></h2>
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">
+                                        <?php include 'counters/room-count.php' ?></h2>
                                     <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Salles Totales
                                     </h6>
                                 </div>
@@ -130,9 +134,11 @@ check_login();
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium"><?php include 'counters/booked-count.php' ?></h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium">
+                                            <?php include 'counters/booked-count.php' ?></h2>
                                     </div>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Salles Réservées</h6>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Salles Réservées
+                                    </h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="book-open"></i></span>
@@ -144,8 +150,10 @@ check_login();
                         <div class="card-body">
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
-                                    <h2 class="text-dark mb-1 font-weight-medium"><?php include 'counters/course-count.php' ?></h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Formations Dispensées</h6>
+                                    <h2 class="text-dark mb-1 font-weight-medium">
+                                        <?php include 'counters/course-count.php' ?></h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Formations
+                                        Dispensées</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
@@ -184,12 +192,12 @@ check_login();
                                         $cnt = 1;
                                         while ($row = $res->fetch_object()) {
                                         ?>
-                                            <tr>
-                                                <td><?php echo $cnt;; ?></td>
-                                                <!-- <td><?php echo $row->userId; ?></td> -->
-                                                <td><?php echo $row->userEmail; ?></td>
-                                                <td><?php echo $row->loginTime; ?></td>
-                                            </tr>
+                                        <tr>
+                                            <td><?php echo $cnt;; ?></td>
+                                            <!-- <td><?php echo $row->userId; ?></td> -->
+                                            <td><?php echo $row->userEmail; ?></td>
+                                            <td><?php echo $row->loginTime; ?></td>
+                                        </tr>
                                         <?php
                                             $cnt = $cnt + 1;
                                         } ?>

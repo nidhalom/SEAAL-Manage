@@ -13,7 +13,7 @@
     $stmt = $mysqli->prepare($query);
     $rc=$stmt->bind_param('sssi',$coursecode,$coursesn,$coursefn,$id);
     $stmt->execute();
-    echo"<script>alert('Les Formations selectioner sont mis a jour');
+    echo"<script>alert('La Formation selectioner a été mis a jour');
     window.location.href='manage-courses.php';
     </script>";
     
@@ -30,16 +30,16 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Modifier une Formation</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -89,14 +89,15 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Modifier les Formations</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Modifier une Formation
+                        </h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -113,7 +114,7 @@
                     <div class="row">
 
 
-                    <?php	
+                        <?php	
 						$id=$_GET['id'];
                         $ret="SELECT * from courses where id=?";
                             $stmt= $mysqli->prepare($ret) ;
@@ -130,10 +131,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Code de Formation</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="cc" value="<?php echo $row->course_code;?>" id="cc" class="form-control" required>
-                                        </div>
-                                    
+                                    <div class="form-group">
+                                        <input type="text" name="cc" value="<?php echo $row->course_code;?>" id="cc"
+                                            class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -143,11 +145,12 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Course Full Name</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="cnf" value="<?php echo $row->course_fn;?>"  id="cnf" class="form-control" required>
-                                        </div>
-                                    
+                                    <h4 class="card-title">Nom complet de la Formation</h4>
+                                    <div class="form-group">
+                                        <input type="text" name="cnf" value="<?php echo $row->course_fn;?>" id="cnf"
+                                            class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -156,10 +159,11 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Course Shortform</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="cns" id="cns" value="<?php echo $row->course_sn;?>" required="required" class="form-control">
-                                        </div>
+                                    <h4 class="card-title">L'abréviation du Formation</h4>
+                                    <div class="form-group">
+                                        <input type="text" name="cns" id="cns" value="<?php echo $row->course_sn;?>"
+                                            required="required" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -167,15 +171,15 @@
                         <?php } ?>
 
                     </div>
-                
 
-                        <div class="form-actions">
-                            <div class="text-center">
-                                <button type="submit" name="submit" class="btn btn-success">Update</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                            </div>
+
+                    <div class="form-actions">
+                        <div class="text-center">
+                            <button type="submit" name="submit" class="btn btn-success">Mis a jour</button>
+                            <button type="reset" class="btn btn-danger">Réinitialiser</button>
                         </div>
-                
+                    </div>
+
                 </form>
 
 

@@ -1,3 +1,3 @@
 <footer class="footer text-center text-muted">
-&copy; <?php echo date("Y"); ?> - SEAAL Management System - Devloped by Hibo</a>
+    &copy; <?php echo date("Y"); ?> - Service Logistique - SEAAL - Devloped by Hibo</a>
 </footer>

@@ -1,30 +1,20 @@
 <?php
-session_start();
-include('../includes/dbconn.php');
-include('../includes/check-login.php');
-check_login();
+    session_start();
+    include('../includes/dbconn.php');
+    include('../includes/check-login.php');
+    check_login();
 
-if (isset($_POST['changepwd'])) {
-    $op = $_POST['oldpassword'];
-    $np = $_POST['newpassword'];
-    $ai = $_SESSION['id'];
-    $udate = date('Y-m-d');
-    $sql = "SELECT password FROM admin where password=?";
-    $chngpwd = $mysqli->prepare($sql);
-    $chngpwd->bind_param('s', $op);
-    $chngpwd->execute();
-    $chngpwd->store_result();
-    $row_cnt = $chngpwd->num_rows;;
-    if ($row_cnt > 0) {
-        $con = "mettre à jour le mot de passe défini par l'administrateur=?,updation_date=? où id=?";
-        $chngpwd1 = $mysqli->prepare($con);
-        $chngpwd1->bind_param('ssi', $np, $udate, $ai);
-        $chngpwd1->execute();
-        $_SESSION['msg'] = "Le mot de passe a été changé";
-    } else {
-        $_SESSION['msg'] = "Le mot de passe actuel ne correspond pas";
+    if(isset($_POST['submit'])){
+    $matérielsfn=$_POST['cc'];
+    $type=$_POST['cns'];
+    $quantite=$_POST['cnf'];
+
+    $query="INSERT into matériels (matériels_fn,Type,quantité) values(?,?,?)";
+    $stmt = $mysqli->prepare($query);
+    $rc=$stmt->bind_param('ssi',$matérielsfn,$type,$quantite);
+    $stmt->execute();
+    echo"<script>alert('Matériel a été ajouté avec succès');</script>";
     }
-}
 
 ?>
 
@@ -40,12 +30,10 @@ if (isset($_POST['changepwd'])) {
     <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>Changer le mot de passe</title>
+    <title>Ajouter un Matériel</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-    <!-- This page plugin CSS -->
-    <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
@@ -70,7 +58,7 @@ if (isset($_POST['changepwd'])) {
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
-            <?php include 'includes/navigation.php' ?>
+            <?php include 'includes/navigation.php'?>
         </header>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
@@ -81,7 +69,7 @@ if (isset($_POST['changepwd'])) {
         <aside class="left-sidebar" data-sidebarbg="skin6">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar" data-sidebarbg="skin6">
-                <?php include 'includes/sidebar.php' ?>
+                <?php include 'includes/sidebar.php'?>
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -98,28 +86,16 @@ if (isset($_POST['changepwd'])) {
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Changer le mot de passe
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Ajouter un Matériel
                         </h4>
-
-
-                        <?php if (isset($_POST['changepwd'])) { ?>
-                        <div class="alert alert-secondary alert-dismissible bg-secondary text-white border-0 fade show"
-                            role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <strong>Info - </strong> <?php echo htmlentities($_SESSION['msg']); ?>
-                            <?php echo htmlentities($_SESSION['msg'] = ""); ?>
+                        <div class="d-flex align-items-center">
+                            <!-- <nav aria-label="breadcrumb">
+                                
+                            </nav> -->
                         </div>
-                        <?php } ?>
-
-
-
-
                     </div>
 
                 </div>
-
             </div>
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
@@ -127,6 +103,7 @@ if (isset($_POST['changepwd'])) {
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
+
             <div class="container-fluid">
 
                 <form method="POST">
@@ -134,14 +111,14 @@ if (isset($_POST['changepwd'])) {
                     <div class="row">
 
 
+
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Mot de passe actuel</h4>
+                                    <h4 class="card-title">Produit</h4>
                                     <div class="form-group">
-                                        <input type="password" value="" name="oldpassword" id="oldpassword"
-                                            class="form-control" onBlur="checkpass()" required="required">
-                                        <span id="password-availability-status" style="font-size:12px;"></span>
+                                        <input type="text" name="cc" placeholder="Entrez le nom de matériel" id="cc"
+                                            class="form-control" required>
                                     </div>
 
                                 </div>
@@ -150,46 +127,32 @@ if (isset($_POST['changepwd'])) {
 
 
 
-                        <div class="col-sm-12 col-md-6 col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Nouveau mot de passe</h4>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" name="newpassword" id="newpassword"
-                                            value="" required="required">
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
 
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Confirmation mot de passe</h4>
+                                    <h4 class="card-title">Type</h4>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" value="" required="required"
-                                            id="cpassword" name="cpassword">
+                                        <input type="text" name="cns" id="cns" placeholder="Type de materiél"
+                                            required="required" class="form-control">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <?php
-                        $aid = $_SESSION['id'];
-                        $ret = "SELECT * from admin where id=?";
-                        $stmt = $mysqli->prepare($ret);
-                        $stmt->bind_param('i', $aid);
-                        $stmt->execute(); //ok
-                        $res = $stmt->get_result();
-                        //$cnt=1;
-                        while ($row = $res->fetch_object()) {
-                        ?>
 
-                        <h6 class="card-subtitle"><code>Dernier changement le: </code> <?php echo $row->updation_date;
-                                                                                    } ?> </h6>
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Quantité total</h4>
+                                    <div class="form-group">
+                                        <input type="text" name="cnf" placeholder="Entrez la quantite total" id="cnf"
+                                            class="form-control" required>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
 
 
                     </div>
@@ -197,13 +160,13 @@ if (isset($_POST['changepwd'])) {
 
                     <div class="form-actions">
                         <div class="text-center">
-                            <button type="submit" name="changepwd" class="btn btn-success">Changer</button>
+                            <button type="submit" name="submit" class="btn btn-success">Insérer</button>
                             <button type="reset" class="btn btn-danger">Réinitialiser</button>
                         </div>
                     </div>
 
-
                 </form>
+
 
             </div>
             <!-- ============================================================== -->
@@ -245,40 +208,6 @@ if (isset($_POST['changepwd'])) {
     <script src="../assets/libs/chartist/dist/chartist.min.js"></script>
     <script src="../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="../dist/js/pages/dashboards/dashboard1.min.js"></script>
-    <script src="../assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../dist/js/pages/datatable/datatable-basic.init.js"></script>
-
-    <script>
-    function checkAvailability() {
-        $("#loaderIcon").show();
-        jQuery.ajax({
-            url: "check-availability-admin.php",
-            data: 'emailid=' + $("#emailid").val(),
-            type: "POST",
-            success: function(data) {
-                $("#user-availability-status").html(data);
-                $("#loaderIcon").hide();
-            },
-            error: function() {}
-        });
-    }
-    </script>
-
-    <script>
-    function checkpass() {
-        $("#loaderIcon").show();
-        jQuery.ajax({
-            url: "check-availability-admin.php",
-            data: 'oldpassword=' + $("#oldpassword").val(),
-            type: "POST",
-            success: function(data) {
-                $("#password-availability-status").html(data);
-                $("#loaderIcon").hide();
-            },
-            error: function() {}
-        });
-    }
-    </script>
 
 </body>
 

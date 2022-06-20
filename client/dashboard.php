@@ -15,16 +15,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- By Hibo -->
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Dashboard</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -74,14 +74,14 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                       <?php include '../includes/greetings.php'?>
+                        <?php include '../includes/greetings.php'?>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- By Hibo -->
             </div>
@@ -101,10 +101,12 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium"><?php include 'counters/client-count.php'?></h2>
-                                
+                                        <h2 class="text-dark mb-1 font-weight-medium">
+                                            <?php include 'counters/client-count.php'?></h2>
+
                                     </div>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Clients enregistrés</h6>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Clients
+                                        enregistrés</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
@@ -117,7 +119,8 @@
                         <div class="card-body">
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
-                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><?php include 'counters/room-count.php'?></h2>
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">
+                                        <?php include 'counters/room-count.php'?></h2>
                                     <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Salles totales
                                     </h6>
                                 </div>
@@ -132,9 +135,11 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium"><?php include 'counters/booked-count.php'?></h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium">
+                                            <?php include 'counters/booked-count.php'?></h2>
                                     </div>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Salles Réservées</h6>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Salles Réservées
+                                    </h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="book-open"></i></span>
@@ -146,8 +151,10 @@
                         <div class="card-body">
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
-                                    <h2 class="text-dark mb-1 font-weight-medium"><?php include 'counters/course-count.php'?></h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Formations Dispensées</h6>
+                                    <h2 class="text-dark mb-1 font-weight-medium">
+                                        <?php include 'counters/course-count.php'?></h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Formations
+                                        Dispensées</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
@@ -159,8 +166,8 @@
                 <!-- *************************************************************** -->
                 <!-- End First Cards -->
                 <!-- *************************************************************** -->
-                
-               
+
+
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

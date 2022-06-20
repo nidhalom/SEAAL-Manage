@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
             header("location:client/dashboard.php");
         }
     } else {
-        echo "<script>alert('Désolé, nom d'utilisateur/email ou mot de passe invalide !');</script>";
+        echo "<script>alert('Désolé, email ou mot de passe invalide !');</script>";
     }
 }
 ?>
@@ -43,22 +43,22 @@ if (isset($_POST['login'])) {
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>SEAAL Sheduling</title>
     <!-- Custom CSS -->
     <link href="dist/css/style.min.css" rel="stylesheet">
 
     <script type="text/javascript">
-        function valid() {
-            if (document.registration.password.value != document.registration.cpassword.value) {
-                alert("Le mot de passe et le champ Retaper le mot de passe ne correspondent pas !");
-                document.registration.cpassword.focus();
-                return false;
-            }
-            return true;
+    function valid() {
+        if (document.registration.password.value != document.registration.cpassword.value) {
+            alert("Le mot de passe et le Retaper le mot de passe ne correspondent pas !");
+            document.registration.cpassword.focus();
+            return false;
         }
+        return true;
+    }
     </script>
 
 </head>
@@ -83,9 +83,11 @@ if (isset($_POST['login'])) {
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative" style="background:url(../assets/images/big/auth-bg.jpg) no-repeat center center;">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
+            style="background:url(../assets/images/big/auth-bg.jpg) no-repeat center center;">
             <div class="auth-box row">
-                <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(assets/images/Centre-img.jpg);">
+                <div class="col-lg-7 col-md-5 modal-bg-img"
+                    style="background-image: url(assets/images/Centre-img.jpg);">
                 </div>
                 <div class="col-lg-5 col-md-7 bg-white">
                     <div class="p-3">
@@ -99,13 +101,15 @@ if (isset($_POST['login'])) {
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="text-dark" for="uname">Email</label>
-                                        <input class="form-control" name="email" id="uname" type="email" placeholder="Enter your email" required>
+                                        <input class="form-control" name="email" id="uname" type="email"
+                                            placeholder="Entrez votre email" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="text-dark" for="pwd">Mot de passe</label>
-                                        <input class="form-control" name="password" id="pwd" type="password" placeholder="Entrez votre mot de passe" required>
+                                        <input class="form-control" name="password" id="pwd" type="password"
+                                            placeholder="Entrez votre mot de passe" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-center">
@@ -136,7 +140,7 @@ if (isset($_POST['login'])) {
     <!-- This page plugin js -->
     <!-- ============================================================== -->
     <script>
-        $(".preloader ").fadeOut();
+    $(".preloader ").fadeOut();
     </script>
 </body>
 

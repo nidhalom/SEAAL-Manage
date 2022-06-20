@@ -35,16 +35,16 @@
 <html dir="ltr" lang="en">
 
 <head>
-<!-- By Hibo -->
+    <!-- By Hibo -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Changer mot de passe</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -52,16 +52,16 @@
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
     <script type="text/javascript">
-    function valid(){
-    if(document.changepwd.newpassword.value!= document.changepwd.cpassword.value){
-        alert("Le nouveau mot de passe et le mot de passe de confirmation ne correspondent pas");
-        document.changepwd.cpassword.focus();
-        return false;
-     }
+    function valid() {
+        if (document.changepwd.newpassword.value != document.changepwd.cpassword.value) {
+            alert("Le nouveau mot de passe et le mot de passe de confirmation ne correspondent pas");
+            document.changepwd.cpassword.focus();
+            return false;
+        }
         return true;
     }
     </script>
-    
+
 </head>
 
 <body>
@@ -106,95 +106,102 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-            
+
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                
+
                 <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Paramètres du compte - Changer mot de passe</h4>
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Paramètres du compte -
+                        Changer mot de passe</h4>
                 </div>
 
                 <div class="row">
 
-                <?php $result ="SELECT passUdateDate FROM userregistration WHERE id=?";
+                    <?php $result ="SELECT passUdateDate FROM userregistration WHERE id=?";
                 $stmt = $mysqli->prepare($result);
                 $stmt->bind_param('i',$ai);
                 $stmt->execute();
                 $stmt -> bind_result($result);
                 $stmt -> fetch(); ?>
 
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-subtitle">Dernière mise à jour le: <code><?php echo $result; ?></code> </h6>
-                                </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">Dernière mise à jour le: <code><?php echo $result; ?></code>
+                                </h6>
                             </div>
                         </div>
+                    </div>
                 </div>
 
 
                 <?php if(isset($_POST['changepwd'])){ ?>
-                        <div class="alert alert-primary alert-dismissible bg-primary text-white border-0 fade show"
-                                    role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <strong>Info: </strong> <?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg']=""); ?>
-                        </div> <?php } ?>
+                <div class="alert alert-primary alert-dismissible bg-primary text-white border-0 fade show"
+                    role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Info: </strong>
+                    <?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg']=""); ?>
+                </div> <?php } ?>
 
                 <form method="POST" name="changepwd" id="change-pwd" onSubmit="return valid();">
                     <div class="row">
 
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Mot de passe actuel</h4>
-                                            <div class="form-group">
-                                                <input type="password" name="oldpassword" id="oldpassword" value="" class="form-control" onBlur="checkpass()" required="required">
-                                                <span id="password-availability-status" class="help-block m-b-none" style="font-size:12px;"></span>
-                                            </div>
-                                        
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Mot de passe actuel</h4>
+                                    <div class="form-group">
+                                        <input type="password" name="oldpassword" id="oldpassword" value=""
+                                            class="form-control" onBlur="checkpass()" required="required">
+                                        <span id="password-availability-status" class="help-block m-b-none"
+                                            style="font-size:12px;"></span>
                                     </div>
+
                                 </div>
                             </div>
+                        </div>
 
 
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Nouveau mot de passe</h4>
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" name="newpassword" id="newpassword" value="" required="required">
-                                            </div>
-                                        
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Nouveau mot de passe</h4>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="newpassword" id="newpassword"
+                                            value="" required="required">
                                     </div>
+
                                 </div>
                             </div>
+                        </div>
 
 
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Confirmation mot de passe<h4>
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Confirmation mot de passe<h4>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" value="" required="required" id="cpassword" name="cpassword">
+                                                <input type="password" class="form-control" value="" required="required"
+                                                    id="cpassword" name="cpassword">
                                             </div>
-                                    </div>
                                 </div>
                             </div>
-                    
-                    
+                        </div>
+
+
                     </div>
 
-                    
+
                     <div class="form-actions">
-                                <div class="text-center">
-                                    <button type="submit" name="changepwd" class="btn btn-success">Soumettre</button>
-                                    <button type="reset" class="btn btn-dark">Réinitialiser</button>
-                                    </div>
-                            </div>
+                        <div class="text-center">
+                            <button type="submit" name="changepwd" class="btn btn-success">Soumettre</button>
+                            <button type="reset" class="btn btn-dark">Réinitialiser</button>
+                        </div>
+                    </div>
 
                 </form>
 
@@ -244,14 +251,14 @@
     function checkpass() {
         $("#loaderIcon").show();
         jQuery.ajax({
-        url: "check-availability.php",
-        data:'oldpassword='+$("#oldpassword").val(),
-        type: "POST",
-        success:function(data){
-            $("#password-availability-status").html(data);
-            $("#loaderIcon").hide();
+            url: "check-availability.php",
+            data: 'oldpassword=' + $("#oldpassword").val(),
+            type: "POST",
+            success: function(data) {
+                $("#password-availability-status").html(data);
+                $("#loaderIcon").hide();
             },
-            error:function (){}
+            error: function() {}
         });
     }
     </script>

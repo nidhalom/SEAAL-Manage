@@ -11,7 +11,7 @@ if (isset($_GET['del'])) {
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $stmt->close();
-    echo "<script>alert('Record has been deleted');</script>";
+    echo "<script>alert('Supprimé avec succès');</script>";
 }
 ?>
 
@@ -24,10 +24,10 @@ if (isset($_GET['del'])) {
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Les Comptes</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -37,14 +37,16 @@ if (isset($_GET['del'])) {
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
     <script language="javascript" type="text/javascript">
-        var popUpWin = 0;
+    var popUpWin = 0;
 
-        function popUpWindow(URLStr, left, top, width, height) {
-            if (popUpWin) {
-                if (!popUpWin.closed) popUpWin.close();
-            }
-            popUpWin = open(URLStr, 'popUpWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width=' + 510 + ',height=' + 430 + ',left=' + left + ', top=' + top + ',screenX=' + left + ',screenY=' + top + '');
+    function popUpWindow(URLStr, left, top, width, height) {
+        if (popUpWin) {
+            if (!popUpWin.closed) popUpWin.close();
         }
+        popUpWin = open(URLStr, 'popUpWin',
+            'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width=' +
+            510 + ',height=' + 430 + ',left=' + left + ', top=' + top + ',screenX=' + left + ',screenY=' + top + '');
+    }
     </script>
 
 </head>
@@ -62,7 +64,8 @@ if (isset($_GET['del'])) {
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -95,7 +98,8 @@ if (isset($_GET['del'])) {
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Les Comptes des Clients</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Les Comptes des Clients
+                        </h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
@@ -118,12 +122,14 @@ if (isset($_GET['del'])) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="col-4 m-auto"><a href="register-client.php"><button type="button" class="btn btn-block btn-md btn-success">Ajouter un Client</button></a>
+                                <div class="col-4 m-auto"><a href="register-client.php"><button type="button"
+                                            class="btn btn-block btn-md btn-success">Ajouter un Client</button></a>
                                 </div>
                                 <div class="card-body">
                                     <h6 class="card-subtitle">Afficher les comptes de tous les clients enregistrés.</h6>
                                     <div class="table-responsive">
-                                        <table id="zero_config" class="table table-striped table-hover table-bordered no-wrap">
+                                        <table id="zero_config"
+                                            class="table table-striped table-hover table-bordered no-wrap">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>#</th>
@@ -144,16 +150,20 @@ if (isset($_GET['del'])) {
                                                 $cnt = 1;
                                                 while ($row = $res->fetch_object()) {
                                                 ?>
-                                                    <tr>
-                                                        <td><?php echo $cnt;; ?></td>
-                                                        <td><?php echo $row->regNo; ?></td>
-                                                        <td><?php echo $row->firstName; ?> <?php echo $row->middleName; ?> <?php echo $row->lastName; ?></td>
-                                                        <td><?php echo "0" ?><?php echo $row->contactNo; ?></td>
-                                                        <td><?php echo $row->email; ?></td>
-                                                        <td>
-                                                            <a href="view-clients-acc.php?del=<?php echo $row->id; ?>" title="Supprimer l'enregistrement" onclick="return confirm('Voulez-vous supprimer');"><i class="icon-close" style="color:red;"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                <tr>
+                                                    <td><?php echo $cnt;; ?></td>
+                                                    <td><?php echo $row->regNo; ?></td>
+                                                    <td><?php echo $row->firstName; ?> <?php echo $row->middleName; ?>
+                                                        <?php echo $row->lastName; ?></td>
+                                                    <td><?php echo "0" ?><?php echo $row->contactNo; ?></td>
+                                                    <td><?php echo $row->email; ?></td>
+                                                    <td>
+                                                        <a href="view-clients-acc.php?del=<?php echo $row->id; ?>"
+                                                            title="Supprimer l'enregistrement"
+                                                            onclick="return confirm('Voulez-vous supprimer');"><i
+                                                                class="icon-close" style="color:red;"></i></a>
+                                                    </td>
+                                                </tr>
                                                 <?php
                                                     $cnt = $cnt + 1;
                                                 } ?>

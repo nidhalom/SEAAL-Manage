@@ -5,15 +5,18 @@
     check_login();
 
     if(isset($_POST['submit'])){
-    $coursecode=$_POST['cc'];
-    $coursesn=$_POST['cns'];
-    $coursefn=$_POST['cnf'];
-
-    $query="INSERT into courses (course_code,course_sn,course_fn) values(?,?,?)";
+    $matérielsfn=$_POST['cc'];
+    $type=$_POST['cns'];
+    $quantité=$_POST['cnf'];
+    $id=$_GET['id'];
+    $query="UPDATE matériels set matériels_fn=?,Type=?,quantité=? where id=?";
     $stmt = $mysqli->prepare($query);
-    $rc=$stmt->bind_param('sss',$coursecode,$coursesn,$coursefn);
+    $rc=$stmt->bind_param('ssii',$matérielsfn,$type,$quantité,$id);
     $stmt->execute();
-    echo"<script>alert('Course has been added successfully');</script>";
+    echo"<script>alert('Le matériel selectioner a été mis a jour');
+    window.location.href='manage-matériels.php';
+    </script>";
+    
     }
 
 ?>
@@ -27,16 +30,16 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Modifier un Matériel</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -86,14 +89,15 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Ajouter des Formations</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Modifier un Matériel
+                        </h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -110,15 +114,28 @@
                     <div class="row">
 
 
+                        <?php	
+						$id=$_GET['id'];
+                        $ret="SELECT * from matériels where id=?";
+                            $stmt= $mysqli->prepare($ret) ;
+                        $stmt->bind_param('i',$id);
+                        $stmt->execute() ;//ok
+                        $res=$stmt->get_result();
+                        //$cnt=1;
+                        while($row=$res->fetch_object())
+                        {
+                            ?>
+
 
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Produit</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="cc" placeholder="Entrez le code du Formation" id="cc" class="form-control" required>
-                                        </div>
-                                    
+                                    <div class="form-group">
+                                        <input type="text" name="cc" value="<?php echo $row->matériels_fn;?>" id="cc"
+                                            class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -128,11 +145,12 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">QTE Totale</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="cnf" placeholder="Entrez le nom du Formation" id="cnf" class="form-control" required>
-                                        </div>
-                                    
+                                    <h4 class="card-title">Type</h4>
+                                    <div class="form-group">
+                                        <input type="text" name="cns" value="<?php echo $row->Type;?>" id="cns"
+                                            class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -141,26 +159,27 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Notes</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="cns" id="cns" placeholder="Exemple: WRD1, EXL2" required="required" class="form-control">
-                                        </div>
+                                    <h4 class="card-title">Quantité total</h4>
+                                    <div class="form-group">
+                                        <input type="text" name="cnf" id="cnf" value="<?php echo $row->quantité;?>"
+                                            required="required" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-
+                        <?php } ?>
 
                     </div>
-                
 
-                        <div class="form-actions">
-                            <div class="text-center">
-                                <button type="submit" name="submit" class="btn btn-success">Insérer</button>
-                                <button type="reset" class="btn btn-danger">Réinitialiser</button>
-                            </div>
+
+                    <div class="form-actions">
+                        <div class="text-center">
+                            <button type="submit" name="submit" class="btn btn-success">Mis a jour</button>
+                            <button type="reset" class="btn btn-danger">Réinitialiser</button>
                         </div>
-                
+                    </div>
+
                 </form>
 
 

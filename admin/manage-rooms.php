@@ -11,7 +11,7 @@ if (isset($_GET['del'])) {
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $stmt->close();
-    echo "<script>alert('Record has been deleted');</script>";
+    echo "<script>alert('Supprimé avec succès');</script>";
 }
 ?>
 
@@ -24,10 +24,10 @@ if (isset($_GET['del'])) {
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Salles</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -51,7 +51,8 @@ if (isset($_GET['del'])) {
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -109,17 +110,19 @@ if (isset($_GET['del'])) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="col-4 m-auto"> <a href="add-rooms.php"><button type="button" class="btn btn-block btn-md btn-success">Ajouter une salle</button></a>
+                                <div class="col-4 m-auto"> <a href="add-rooms.php"><button type="button"
+                                            class="btn btn-block btn-md btn-success">Ajouter une salle</button></a>
                                 </div>
                                 <hr>
                                 <div class="table-responsive">
-                                    <table id="zero_config" class="table table-striped table-hover table-bordered no-wrap">
+                                    <table id="zero_config"
+                                        class="table table-striped table-hover table-bordered no-wrap">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nu. Salle</th>
                                                 <th>Places</th>
-                                                <th>Frais par mois</th>
+                                                <th>Frais par jour</th>
                                                 <th>Commencé le</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -135,16 +138,20 @@ if (isset($_GET['del'])) {
                                             $cnt = 1;
                                             while ($row = $res->fetch_object()) {
                                             ?>
-                                                <tr>
-                                                    <td><?php echo $cnt;; ?></td>
-                                                    <td><?php echo $row->room_no; ?></td>
-                                                    <td><?php echo $row->seater; ?></td>
-                                                    <td><?php echo $row->fees; ?> DA</td>
-                                                    <td><?php echo $row->posting_date; ?></td>
-                                                    <td><a href="edit-room.php?id=<?php echo $row->id; ?>" title="Modifier"><i class="icon-note"></i></a>&nbsp;&nbsp;
-                                                        <a href="manage-rooms.php?del=<?php echo $row->id; ?>" title="Supprimer" onclick="return confirm('Do you want to delete');"><i class="icon-close" style="color:red;"></i></a>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td><?php echo $cnt;; ?></td>
+                                                <td><?php echo $row->room_no; ?></td>
+                                                <td><?php echo $row->seater; ?></td>
+                                                <td><?php echo $row->fees; ?> DA</td>
+                                                <td><?php echo $row->posting_date; ?></td>
+                                                <td><a href="edit-room.php?id=<?php echo $row->id; ?>"
+                                                        title="Modifier"><i class="icon-note"></i></a>&nbsp;&nbsp;
+                                                    <a href="manage-rooms.php?del=<?php echo $row->id; ?>"
+                                                        title="Supprimer"
+                                                        onclick="return confirm('Voulez-vous supprimer');"><i
+                                                            class="icon-close" style="color:red;"></i></a>
+                                                </td>
+                                            </tr>
                                             <?php
                                                 $cnt = $cnt + 1;
                                             } ?>

@@ -12,9 +12,8 @@
         $stmt = $mysqli->prepare($query);
         $rc=$stmt->bind_param('ssi',$email,$udate,$aid);
         $stmt->execute();
-        echo"<script>alert('Email id has been successfully updated');</script>";
+        echo"<script>alert('Email id a été mis a jour');</script>";
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -26,15 +25,15 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Mon Profil</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-     <!-- This page plugin CSS -->
-     <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- This page plugin CSS -->
+    <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
@@ -87,12 +86,14 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Mon Profil</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Mon Profil</h4>
                         <div class="d-flex align-items-center">
-                            <h6 class="card-subtitle"><code>Vous ne pouvez pas modifier le nom d'utilisateur et la date d'inscription !</code> </h6> 
+                            <h6 class="card-subtitle">
+                                <code>Vous ne pouvez pas modifier le nom d'utilisateur et la date d'inscription !</code>
+                            </h6>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -109,7 +110,7 @@
                     <div class="row">
 
 
-                    <?php	
+                        <?php	
                     $aid=$_SESSION['id'];
                         $ret="SELECT * from admin where id=?";
                             $stmt= $mysqli->prepare($ret) ;
@@ -126,10 +127,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Username</h4>
-                                        <div class="form-group">
-                                            <input type="text" value="<?php echo $row->username;?>" disabled class="form-control">
-                                        </div>
-                                    
+                                    <div class="form-group">
+                                        <input type="text" value="<?php echo $row->username;?>" disabled
+                                            class="form-control">
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -139,11 +141,12 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Email ID</h4>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" name="emailid" id="emailid" value="<?php echo $row->email;?>" required="required">
-                                        </div>
-                                    
+                                    <h4 class="card-title">Email</h4>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="emailid" id="emailid"
+                                            value="<?php echo $row->email;?>" required="required">
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -153,30 +156,32 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Compte enregistré Le</h4>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" value="<?php echo $row->reg_date;?>" disabled>
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="<?php echo $row->reg_date;?>"
+                                            disabled>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <h6 class="card-subtitle"><code>Dernière mise à jour le: </code> <?php echo $row->updation_date;?> </h6>
+                        <h6 class="card-subtitle"><code>Dernière mise à jour le: </code>
+                            <?php echo $row->updation_date;?> </h6>
 
                         <?php } ?>
 
                     </div>
 
 
-                        <div class="form-actions">
-                            <div class="text-center">
-                                <button type="submit" name="update" class="btn btn-success">Faire des changements</button>
-                                <button type="reset" class="btn btn-danger">Réinitialiser</button>
-                            </div>
+                    <div class="form-actions">
+                        <div class="text-center">
+                            <button type="submit" name="update" class="btn btn-success">Faire des changements</button>
+                            <button type="reset" class="btn btn-danger">Réinitialiser</button>
                         </div>
+                    </div>
 
-                 
-                 </form>
-                 
+
+                </form>
+
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

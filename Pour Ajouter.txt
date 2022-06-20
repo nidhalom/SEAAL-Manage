@@ -1,0 +1,4 @@
+attachement 
+upload bon de command + fiche
+upload fiche de presence pdf ou png
+date d'entrer sortie

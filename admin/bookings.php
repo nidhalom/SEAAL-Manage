@@ -12,7 +12,7 @@
             $stmt->bind_param('i',$id);
             $stmt->execute();
             $stmt->close();	   
-            echo "<script>alert('Record has been deleted');</script>" ;
+            echo "<script>alert('Supprimé avec succès');</script>" ;
     }
 ?>
 
@@ -25,15 +25,15 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Gestion des Réservations</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-     <!-- This page plugin CSS -->
-     <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- This page plugin CSS -->
+    <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
@@ -86,15 +86,16 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Réservations</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Réservations
+                        </h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -108,24 +109,26 @@
 
                 <!-- Table Starts -->
                 <!-- <div class="row"> -->
-                    <div class="col-6 m-auto">
-                        <div class="card">
-                            <div class="card-body" >
-                            <a href="bookingsi.php"><button type="button" class="btn btn-block btn-md btn-success">Réservation interne</button></a>
-                            
-                                
-                            </div>
-                            </div>
-                            <div  class="card">
-                            <div class="card-body">
-                            <a href="bookingse.php"><button type="button" class="btn btn-block btn-md btn-success">Réservation externe</button></a>
-                            
-                                
-                            </div>
+                <div class="col-6 m-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="bookingsi.php"><button type="button"
+                                    class="btn btn-block btn-md btn-success">Réservation interne</button></a>
+
+
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="bookingse.php"><button type="button"
+                                    class="btn btn-block btn-md btn-success">Réservation externe</button></a>
+
+
+                        </div>
+                    </div>
+                </div>
                 <!-- </div> -->
-                
+
                 <!-- Table Ends -->
 
             </div>

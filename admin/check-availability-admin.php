@@ -4,7 +4,7 @@
         $email= $_POST["emailid"];
         if (filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
 
-            echo "error : You did not enter a valid email.";
+            echo "erreur : Vous n'avez pas saisi d'email valide.";
         } else {
             $result ="SELECT count(*) FROM userRegistration WHERE email=?";
             $stmt = $mysqli->prepare($result);
@@ -14,9 +14,9 @@
     $stmt->fetch();
     $stmt->close();
     if($count>0){
-    echo "<span style='color:red'> Email already exist .</span>";
+    echo "<span style='color:red'> Email exist déja .</span>";
         } else {
-            echo "<span style='color:green'> Email available for registration .</span>";
+            echo "<span style='color:green'> Email valable pour inscrit .</span>";
         }
      }
     }

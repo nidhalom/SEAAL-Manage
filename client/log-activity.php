@@ -8,22 +8,23 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <!-- By Hibo -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Log d'Activities</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -45,7 +46,7 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
-            
+
             <?php include '../includes/client-navigation.php'?>
 
         </header>
@@ -69,34 +70,34 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-            
+
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                
+
                 <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">My Log Activities</h4>
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Mon Log Activities</h4>
                 </div>
 
-<!-- By Hibo -->
+                <!-- By Hibo -->
                 <div class="col-12">
-                        <div class="card">
-                            
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">User ID</th>
-                                            <th scope="col">IP</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Ville</th>
-                                            <th scope="col">Pays</th>
-                                            <th scope="col">Temps connecté</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="card">
+
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">User ID</th>
+                                        <th scope="col">IP</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Ville</th>
+                                        <th scope="col">Pays</th>
+                                        <th scope="col">Temps connecté</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <?php	
                                         $aid=$_SESSION['id'];
                                         $ret="SELECT * from userlog where userId=?";
@@ -107,25 +108,26 @@
                                         $cnt=1;
                                         while($row=$res->fetch_object()) {
                                                 ?>
-                                        <tr><td><?php echo $cnt;;?></td>
+                                    <tr>
+                                        <td><?php echo $cnt;;?></td>
                                         <td><?php echo $row->userId;?></td>
-                                        
+
                                         <td><?php echo $row->userIp;?></td>
                                         <td><?php echo $row->userEmail;?></td>
                                         <td><?php echo $row->city;?></td>
                                         <td><?php echo $row->country;?></td>
                                         <td><?php echo $row->loginTime;?></td>
-                                            </tr>
-                                            <?php
+                                    </tr>
+                                    <?php
                                         $cnt=$cnt+1;
                                             } ?>
-											
-										
-									</tbody>
-                                </table>
-                            </div>
+
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
 
 
             </div>

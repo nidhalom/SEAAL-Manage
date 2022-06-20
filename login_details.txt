@@ -1,4 +1,10 @@
 **Admin Login Details**
 
+Email : admin@mail.com
 Username: admin
-Password: Password@123
+mot de pass : 12345
+
+**Terry berk Login Details**
+
+Email : terry@mail.com
+mot de pass : 123456

@@ -16,7 +16,7 @@
 		if($rs){
 			header("location:dashboard.php");
 				} else {
-					echo "<script>alert('Nom d'utilisateur/e-mail invalide ou mot de passe');</script>";
+				echo"<script>alert('Email/Username invalide ou mot de passe !');</script>";
 				}
 	}
 ?>
@@ -30,22 +30,22 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Panneau d'Administration</title>
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
     <script type="text/javascript">
     function valid() {
-    if(document.registration.password.value!= document.registration.cpassword.value){
-        alert("Le mot de passe et le Retaper de mot de passe ne correspondent pas !  !!");
-    document.registration.cpassword.focus();
-    return false;
+        if (document.registration.password.value != document.registration.cpassword.value) {
+            alert("Le mot de passe et le Retaper de mot de passe ne correspondent pas !  !!");
+            document.registration.cpassword.focus();
+            return false;
         }
-    return true;
-        }
+        return true;
+    }
     </script>
 
 </head>
@@ -79,7 +79,7 @@
                             <img src="../assets/images/big/icon.png" alt="wrapkit">
                         </div>
                         <h2 class="mt-3 text-center">Connexion D'Administrateur</h2>
-                        
+
                         <form class="mt-4" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -97,10 +97,11 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-center">
-                                    <button type="submit" name="login" class="btn btn-block btn-danger">CONNEXION</button>
+                                    <button type="submit" name="login"
+                                        class="btn btn-block btn-danger">CONNEXION</button>
                                 </div>
                                 <div class="col-lg-12 text-center mt-5">
-                                   <a href="../index.php" class="text-danger">Retourner</a>
+                                    <a href="../index.php" class="text-danger">Retourner</a>
                                 </div>
                             </div>
                         </form>
@@ -123,7 +124,7 @@
     <!-- This page plugin js -->
     <!-- ============================================================== -->
     <script>
-        $(".preloader ").fadeOut();
+    $(".preloader ").fadeOut();
     </script>
 </body>
 

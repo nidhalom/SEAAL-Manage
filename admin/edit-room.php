@@ -12,7 +12,7 @@
         $stmt = $mysqli->prepare($query);
         $rc=$stmt->bind_param('iii',$seater,$fees,$id);
         $stmt->execute();
-        echo"<script>alert('Room details has been updated');
+        echo"<script>alert('Details de Salle sont mis a jour');
         window.location.href='manage-rooms.php';
         </script>";
         }
@@ -28,16 +28,16 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Modifier une salle</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -87,14 +87,15 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Modifier les détails de la salle</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Modifier les détails de
+                            la salle</h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -111,7 +112,7 @@
                     <div class="row">
 
 
-                    <?php	
+                        <?php	
                         $id=$_GET['id'];
 						$ret="SELECT * from rooms where id=?";
                         $stmt= $mysqli->prepare($ret) ;
@@ -127,11 +128,12 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Room Number</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="rmno" value="<?php echo $row->room_no;?>" id="rmno" class="form-control" disabled>
-                                        </div>
-                                    
+                                    <h4 class="card-title">Numéro du Salle</h4>
+                                    <div class="form-group">
+                                        <input type="text" name="rmno" value="<?php echo $row->room_no;?>" id="rmno"
+                                            class="form-control" disabled>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -142,16 +144,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Places</h4>
-                                        <div class="form-group mb-4">
-                                            <select class="custom-select mr-sm-2" id="seater" name="seater" required="required">
-                                                <option value="<?php echo $row->seater;?>"><?php echo $row->seater;?></option>
-                                                <option value="1">Une Place</option>
-                                                <option value="2">2 Places</option>
-                                                <option value="3">3 Places</option>
-                                                <option value="4">4 Places</option>
-                                                <option value="5">5 Places</option>
-                                            </select>
-                                        </div>
+                                    <div class="form-group mb-4">
+                                        <input type="number" min="1" value="<?php echo $row->seater;?>" name="seater"
+                                            id="seater" placeholder="N° de places" required="required"
+                                            class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -160,10 +157,11 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Total des frais</h4>
-                                        <div class="form-group">
-                                            <input type="number" name="fees" id="fees" value="<?php echo $row->fees;?>" class="form-control">
-                                        </div>
+                                    <h4 class="card-title">Frais par jour</h4>
+                                    <div class="form-group">
+                                        <input type="number" min="100" name="fees" id="fees"
+                                            value="<?php echo $row->fees;?>" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -171,15 +169,15 @@
                         <?php } ?>
 
                     </div>
-                
 
-                        <div class="form-actions">
-                            <div class="text-center">
-                                <button type="submit" name="submit" class="btn btn-success">Update</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                            </div>
+
+                    <div class="form-actions">
+                        <div class="text-center">
+                            <button type="submit" name="submit" class="btn btn-success">Mis a jour</button>
+                            <button type="reset" class="btn btn-danger">Réinitialiser</button>
                         </div>
-                
+                    </div>
+
                 </form>
 
 

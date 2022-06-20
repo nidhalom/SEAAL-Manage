@@ -7,12 +7,12 @@
     if(isset($_GET['del']))
     {
         $id=intval($_GET['del']);
-        $adn="DELETE from courses where id=?";
+        $adn="DELETE from matériels where id=?";
             $stmt= $mysqli->prepare($adn);
             $stmt->bind_param('i',$id);
             $stmt->execute();
             $stmt->close();	   
-            echo "<script>alert('Record has been deleted');</script>" ;
+            echo "<script>alert('Supprimé avec succès');</script>" ;
     }
 ?>
 
@@ -25,15 +25,15 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Matériel</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-     <!-- This page plugin CSS -->
-     <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- This page plugin CSS -->
+    <link href="../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
@@ -86,15 +86,16 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des matériaux</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion du Matériel
+                        </h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -111,25 +112,27 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="col-4 m-auto"><a href="add-matérieux.php" ><button type="button" class="btn btn-block btn-md btn-success">Nouveau Matériel</button></a>
-                            </div>
-                            <hr>
+                                <div class="col-4 m-auto"><a href="add-matériels.php"><button type="button"
+                                            class="btn btn-block btn-md btn-success">Nouveau Matériel</button></a>
+                                </div>
+                                <hr>
                                 <div class="table-responsive">
-                                    <table id="zero_config" class="table table-striped table-hover table-bordered no-wrap">
-                                    <thead class="thead-dark">
+                                    <table id="zero_config"
+                                        class="table table-striped table-hover table-bordered no-wrap">
+                                        <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nom de Produit</th>
-                                                <th>Entrée</th>
-                                                <th>Sortie</th>
-                                                <th>Stocks</th>
+                                                <th>Type</th>
+                                                <th>Quantité</th>
+                                                <th>Date d'ajoute</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php	
+                                            <?php	
                                             $aid=$_SESSION['id'];
-                                            $ret="SELECT * from courses";
+                                            $ret="SELECT * from matériels";
                                             $stmt= $mysqli->prepare($ret) ;
                                             $stmt->execute() ;
                                             $res=$stmt->get_result();
@@ -137,27 +140,33 @@
                                             while($row=$res->fetch_object())
                                                 {
                                                     ?>
-                                        <tr><td><?php echo $cnt;;?></td>
-                                        <td><?php echo $row->course_fn;?></td>
-                                        <td><?php echo $row->course_sn;?></td>
-                                        <td><?php echo $row->course_code;?></td>
-                                        <td><?php echo $row->posting_date;?></td>
+                                            <tr>
+                                                <td><?php echo $cnt;;?></td>
+                                                <td><?php echo $row->matériels_fn;?></td>
+                                                <td><?php echo $row->Type;?></td>
+                                                <td><?php echo $row->quantité;?></td>
+                                                <td><?php echo $row->posting_date;?></td>
 
-                                        <td><a href="edit-courses.php?id=<?php echo $row->id;?>" title="Modifier"><i class="icon-note"></i></a>&nbsp;&nbsp;
-                                        <a href="manage-courses.php?del=<?php echo $row->id;?>" title="Supprimer" onclick="return confirm('Do you want to delete');" ><i class="icon-close" style="color:red;"></i></a></td>
+                                                <td><a href="edit-matériels.php?id=<?php echo $row->id;?>"
+                                                        title="Modifier"><i class="icon-note"></i></a>&nbsp;&nbsp;
+                                                    <a href="manage-matériels.php?del=<?php echo $row->id;?>"
+                                                        title="Supprimer"
+                                                        onclick="return confirm('Voulez-vous supprimer');"><i
+                                                            class="icon-close" style="color:red;"></i></a>
+                                                </td>
 
-                                    </tr>
+                                            </tr>
                                             <?php
                                                 $cnt=$cnt+1;
                                             } ?>
-									    </tbody>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Table Ends -->
 
             </div>

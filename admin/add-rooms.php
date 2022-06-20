@@ -15,13 +15,13 @@
          $stmt1->store_result(); 
          $row_cnt=$stmt1->num_rows;;
          if($row_cnt>0){
-             echo"<script>alert('Room already exist!');</script>";
+             echo"<script>alert('Salle déjà existé!');</script>";
          } else {
              $query="INSERT into  rooms (seater,room_no,fees) values(?,?,?)";
             $stmt = $mysqli->prepare($query);
              $rc=$stmt->bind_param('iii',$seater,$roomno,$fees);
             $stmt->execute();
-                 echo"<script>alert('Room has been added');</script>";
+                 echo"<script>alert('Une salle a été ajouté avec succès');</script>";
          }
      }
  ?>
@@ -35,16 +35,16 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Ajouter une salle</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -94,14 +94,14 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Ajouter des salles</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Ajouter une salle</h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -127,58 +127,52 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Numéro du Salle</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="rmno" placeholder="Entrez le Numéro du Salle" id="rmno" class="form-control" required>
-                                        </div>
-                                    
+                                    <div class="form-group">
+                                        <input type="text" name="rmno" placeholder="Entrez le Numéro du Salle" id="rmno"
+                                            class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Places</h4>
-                                        <div class="form-group mb-4">
-                                            <select class="custom-select mr-sm-2" id="seater" name="seater" required="required">
-                                                <option value="">Choisir N° de Places...</option>
-                                                <option value="1">Une Place</option>
-                                                <option value="2">2 Places</option>
-                                                <option value="3">3 Places</option>
-                                                <option value="4">4 Places</option>
-                                                <option value="5">5 Places</option>
-                                            </select>
-                                        </div>
+                                    <div class="form-group mb-4">
+                                        <input type="number" min="1" name="seater" id="seater"
+                                            placeholder="N° de places" required="required" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-<!-- 
-                         <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Total Fees</h4>
-                                        <div class="form-group">
-                                            <input type="number" name="fee" id="fee" placeholder="Enter Total Fees" required="required" class="form-control">
-                                        </div>
+                                    <h4 class="card-title">Frais par jour</h4>
+                                    <div class="form-group">
+                                        <input type="number" min="0" name="fee" id="fee"
+                                            placeholder="Entrez les frais total" required="required"
+                                            class="form-control">
+                                    </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
 
 
 
                     </div>
-                
 
-                        <div class="form-actions">
-                            <div class="text-center">
-                                <button type="submit" name="submit" class="btn btn-success">insérer</button>
-                                <button type="reset" class="btn btn-danger">Réinitialiser</button>
-                            </div>
+
+                    <div class="form-actions">
+                        <div class="text-center">
+                            <button type="submit" name="submit" class="btn btn-success">insérer</button>
+                            <button type="reset" class="btn btn-danger">Réinitialiser</button>
                         </div>
-                
+                    </div>
+
                 </form>
 
 

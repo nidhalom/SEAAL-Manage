@@ -27,10 +27,10 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Inscription de client</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -38,17 +38,16 @@
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
     <script type="text/javascript">
-    function valid(){
-        if(document.registration.password.value!= document.registration.cpassword.value)
-    {
-        alert("Le mot de passe et la confirmation du mot de passe ne correspondent pas");
-        document.registration.cpassword.focus();
-        return false;
-    }
+    function valid() {
+        if (document.registration.password.value != document.registration.cpassword.value) {
+            alert("Le mot de passe et la confirmation du mot de passe ne correspondent pas");
+            document.registration.cpassword.focus();
+            return false;
+        }
         return true;
     }
     </script>
-    
+
 </head>
 
 <body>
@@ -98,14 +97,15 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Formulaire d'inscription des clients</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Formulaire d'inscription
+                            de client</h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
                             </nav> -->
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -126,10 +126,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Numéro d'immatriculation</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="regno" placeholder="Entrez le numéro d'enregistrement" id="regno" class="form-control" required>
-                                        </div>
-                                    
+                                    <div class="form-group">
+                                        <input type="text" name="regno" placeholder="Entrez le Code d'enregistrement"
+                                            id="regno" class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -140,9 +141,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Nom</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="fname" id="fname" placeholder="Entrez le Nom" required class="form-control">
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="text" name="fname" id="fname" placeholder="Entrez le Nom" required
+                                            class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -152,9 +154,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Prénom</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="lname" id="lname" placeholder="Entrez le Prénom" required class="form-control">
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="text" name="lname" id="lname" placeholder="Entrez le Prénom"
+                                            required class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,9 +167,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Numéro de téléphone</h4>
-                                        <div class="form-group">
-                                            <input type="number" name="contact" id="contact" placeholder="Your Contact" required="required" class="form-control">
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="number" min="0" name="contact" id="contact" placeholder="Pour le Contact"
+                                            required="required" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -176,11 +180,12 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Email ID</h4>
-                                        <div class="form-group">
-                                            <input type="email" name="email" id="email" placeholder="Your Email" onBlur="checkAvailability()" required="required" class="form-control">
-                                            <span id="user-availability-status" style="font-size:12px;"></span>
-                                        </div>
+                                    <h4 class="card-title">Email</h4>
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="email" placeholder="Entrez votre email"
+                                            onBlur="checkAvailability()" required="required" class="form-control">
+                                        <span id="user-availability-status" style="font-size:12px;"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -190,9 +195,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Mot de passe</h4>
-                                        <div class="form-group">
-                                            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required="required" class="form-control">
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" id="password"
+                                            placeholder="Entrez votre mot de passe" required="required"
+                                            class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -201,10 +208,12 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Confirmation mot de passe</h4>
-                                        <div class="form-group">
-                                            <input type="password" name="cpassword" id="cpassword" placeholder="Entrez votre mot de passe" required="required" class="form-control">
-                                        </div>
+                                    <h4 class="card-title">Confirmation de mot de passe</h4>
+                                    <div class="form-group">
+                                        <input type="password" name="cpassword" id="cpassword"
+                                            placeholder="Réentrez votre mot de passe" required="required"
+                                            class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -212,15 +221,15 @@
 
 
                     </div>
-                
 
-                        <div class="form-actions">
-                            <div class="text-center">
-                                <button type="submit" name="submit" class="btn btn-success">Register</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                            </div>
+
+                    <div class="form-actions">
+                        <div class="text-center">
+                            <button type="submit" name="submit" class="btn btn-success">S'inscrire</button>
+                            <button type="reset" class="btn btn-danger">Réinitialiser</button>
                         </div>
-                
+                    </div>
+
                 </form>
 
 
@@ -271,15 +280,14 @@
 
         $("#loaderIcon").show();
         jQuery.ajax({
-        url: "check-availability.php",
-        data:'emailid='+$("#email").val(),
-        type: "POST",
-        success:function(data){
-            $("#user-availability-status").html(data);
-            $("#loaderIcon").hide();
+            url: "check-availability.php",
+            data: 'emailid=' + $("#email").val(),
+            type: "POST",
+            success: function(data) {
+                $("#user-availability-status").html(data);
+                $("#loaderIcon").hide();
             },
-                error:function ()
-            {
+            error: function() {
                 event.preventDefault();
                 alert('error');
             }

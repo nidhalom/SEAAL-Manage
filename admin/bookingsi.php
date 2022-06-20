@@ -28,10 +28,10 @@ if (isset($_POST['submit'])) {
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="K.n & Dj.k">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>SEAAL Management System</title>
+    <title>Réservation interne</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -39,17 +39,17 @@ if (isset($_POST['submit'])) {
     <link href="../dist/css/style.min.css" rel="stylesheet">
 
     <script>
-        function getSeater(val) {
-            $.ajax({
-                type: "POST",
-                url: "get-seater.php",
-                data: 'roomid=' + val,
-                success: function(data) {
-                    //alert(data);
-                    $('#seater').val(data);
-                }
-            });
-        }
+    function getSeater(val) {
+        $.ajax({
+            type: "POST",
+            url: "get-seater.php",
+            data: 'roomid=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#seater').val(data);
+            }
+        });
+    }
     </script>
 
 </head>
@@ -67,7 +67,8 @@ if (isset($_POST['submit'])) {
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -100,7 +101,7 @@ if (isset($_POST['submit'])) {
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">SEAAL Manage</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Réservation interne</h4>
                         <div class="d-flex align-items-center">
                             <!-- <nav aria-label="breadcrumb">
                                 
@@ -129,12 +130,13 @@ if (isset($_POST['submit'])) {
                     $stmt->close();
 
                     if ($rs) { ?>
-                        <div class="alert alert-primary alert-dismissible bg-primary text-white border-0 fade show" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <strong>Info: </strong> Vous avez Réserver une salle!
-                        </div>
+                    <div class="alert alert-primary alert-dismissible bg-primary text-white border-0 fade show"
+                        role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Info: </strong> Vous avez Réserver une salle!
+                    </div>
                     <?php } else {
                         echo "";
                     }
@@ -154,7 +156,9 @@ if (isset($_POST['submit'])) {
                                 <div class="card-body">
                                     <h4 class="card-title">Numéro du Salle</h4>
                                     <div class="form-group mb-4">
-                                        <select class="custom-select mr-sm-2" name="room" id="room" onChange="getSeater(this.value);" onBlur="checkAvailability()" required id="inlineFormCustomSelect">
+                                        <select class="custom-select mr-sm-2" name="room" id="room"
+                                            onChange="getSeater(this.value);" onBlur="checkAvailability()" required
+                                            id="inlineFormCustomSelect">
                                             <option selected>Sélectionner...</option>
                                             <?php $query = "SELECT * FROM rooms";
                                             $stmt2 = $mysqli->prepare($query);
@@ -162,7 +166,8 @@ if (isset($_POST['submit'])) {
                                             $res = $stmt2->get_result();
                                             while ($row = $res->fetch_object()) {
                                             ?>
-                                                <option value="<?php echo $row->room_no; ?>"> <?php echo $row->room_no; ?></option>
+                                            <option value="<?php echo $row->room_no; ?>"> <?php echo $row->room_no; ?>
+                                            </option>
                                             <?php } ?>
                                         </select>
                                         <span id="room-availability-status" style="font-size:12px;"></span>
@@ -177,7 +182,8 @@ if (isset($_POST['submit'])) {
                                 <div class="card-body">
                                     <h4 class="card-title">Places</h4>
                                     <div class="form-group">
-                                        <input type="text" id="seater" name="seater" placeholder="Entrez numéro des places" required class="form-control">
+                                        <input type="text" id="seater" name="seater"
+                                            placeholder="Entrez numéro des places" required class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +202,9 @@ if (isset($_POST['submit'])) {
                                             $res = $stmt2->get_result();
                                             while ($row = $res->fetch_object()) {
                                             ?>
-                                                <option value="<?php echo $row->course_fn; ?>"><?php echo $row->course_fn; ?>&nbsp;&nbsp;(<?php echo $row->course_sn; ?>)</option>
+                                            <option value="<?php echo $row->course_fn; ?>">
+                                                <?php echo $row->course_fn; ?>&nbsp;&nbsp;(<?php echo $row->course_sn; ?>)
+                                            </option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -210,7 +218,8 @@ if (isset($_POST['submit'])) {
                                 <div class="card-body">
                                     <h4 class="card-title">Date de début</h4>
                                     <div class="form-group">
-                                        <input type="date" name="stayf" id="stayf" value="<?php echo date("Y-m-d"); ?>" class="form-control" required>
+                                        <input type="date" name="stayf" id="stayf" value="<?php echo date("Y-m-d"); ?>"
+                                            class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -221,7 +230,8 @@ if (isset($_POST['submit'])) {
                                 <div class="card-body">
                                     <h4 class="card-title">Durée totale</h4>
                                     <div class="form-group">
-                                        <input type="number" min="1" name="duration" id="duration" placeholder="Jours" class="form-control" required>
+                                        <input type="number" min="1" name="duration" id="duration" placeholder="Jours"
+                                            class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -283,53 +293,53 @@ if (isset($_POST['submit'])) {
 
     <!-- Custom Ft. Script Lines -->
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('input[type="checkbox"]').click(function() {
-                if ($(this).prop("checked") == true) {
-                    $('#paddress').val($('#address').val());
-                    $('#pcity').val($('#city').val());
-                    $('#ppincode').val($('#pincode').val());
-                }
+    $(document).ready(function() {
+        $('input[type="checkbox"]').click(function() {
+            if ($(this).prop("checked") == true) {
+                $('#paddress').val($('#address').val());
+                $('#pcity').val($('#city').val());
+                $('#ppincode').val($('#pincode').val());
+            }
 
-            });
         });
+    });
     </script>
 
     <script>
-        function checkAvailability() {
-            $("#loaderIcon").show();
-            jQuery.ajax({
-                url: "check-availability.php",
-                data: 'roomno=' + $("#room").val(),
-                type: "POST",
-                success: function(data) {
-                    $("#room-availability-status").html(data);
-                    $("#loaderIcon").hide();
-                },
-                error: function() {}
-            });
-        }
+    function checkAvailability() {
+        $("#loaderIcon").show();
+        jQuery.ajax({
+            url: "check-availability.php",
+            data: 'roomno=' + $("#room").val(),
+            type: "POST",
+            success: function(data) {
+                $("#room-availability-status").html(data);
+                $("#loaderIcon").hide();
+            },
+            error: function() {}
+        });
+    }
     </script>
 
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#duration').keyup(function() {
-                var fetch_dbid = $(this).val();
-                $.ajax({
-                    type: 'POST',
-                    url: "ins-amt.php?action=userid",
-                    data: {
-                        userinfo: fetch_dbid
-                    },
-                    success: function(data) {
-                        $('.result').val(data);
-                    }
-                });
+    $(document).ready(function() {
+        $('#duration').keyup(function() {
+            var fetch_dbid = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: "ins-amt.php?action=userid",
+                data: {
+                    userinfo: fetch_dbid
+                },
+                success: function(data) {
+                    $('.result').val(data);
+                }
+            });
 
 
-            })
-        });
+        })
+    });
     </script>
 
 </body>
